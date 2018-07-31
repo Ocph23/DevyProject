@@ -1,9 +1,10 @@
 ﻿<div class="row">
+
     <div class="col-md-12">
         <div class="card card-plain">
             <div class="card-header card-header-primary">
                 <h4 class="card-title mt-0">DAFTAR PENGADUAN</h4>
-                <p class="card-category"></p>
+                <p class="card-category">Work List</p>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -11,44 +12,53 @@
                         <thead class="">
                             <tr>
                                 <th>
-                                    NO
-                                </th>
-
-                                <th>
-                                    ID Pengaduan
+                                    ID
                                 </th>
                                 <th>
-                                    ID Pelanggan
+                                    Pelanggan
                                 </th>
-
+                                <th>
+                                    Pengaduan
+                                </th>
                                 <th>
                                     Waktu Lapor
                                 </th>
-
+                                <th>
+                                    Waktu Selesai
+                                </th>
                                 <th>
                                     Status
                                 </th>
+                                <th>
+                                    Verifikasi
+                                </th>
                             </tr>
+
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in Pengaduans">
                                 <td>
                                     {{$index+1}}
                                 </td>
-                                <th>
-                                    {{item.IdPengaduan}}
-                                </th>
-                                <th>
+                                <td>
                                     {{item.IdPelanggan}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
+                                    {{item.Pengaduan}}
+                                </td>
+                                <td>
                                     {{item.WaktuLapor}}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
+                                    {{item.WaktuSelesai}}
+                                </td>
+                                <td>
                                     {{item.Status}}
-                                </th>
+                                </td>
+                                <td>
+                                    <button>Proccess</button>
+                                </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -56,3 +66,4 @@
         </div>
     </div>
 </div>
+        </div>

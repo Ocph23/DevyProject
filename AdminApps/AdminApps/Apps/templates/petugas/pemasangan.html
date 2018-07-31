@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card card-plain">
             <div class="card-header card-header-primary">
-                <h4 class="card-title mt-0">DAFTAR PENGADUAN</h4>
+                <h4 class="card-title mt-0">DAFTAR PEMASANGAN</h4>
                 <p class="card-category"></p>
             </div>
             <div class="card-body">
@@ -13,40 +13,40 @@
                                 <th>
                                     NO
                                 </th>
-
-                                <th>
-                                    ID Pengaduan
-                                </th>
                                 <th>
                                     ID Pelanggan
                                 </th>
 
                                 <th>
-                                    Waktu Lapor
+                                    JenisTarif
                                 </th>
 
                                 <th>
-                                    Status
+                                    JenisPemasangan
+                                </th>
+                                <th>
+                                    Daya
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in Pengaduans">
+                            <tr ng-repeat="item in Pemasangans">
                                 <td>
                                     {{$index+1}}
                                 </td>
                                 <th>
-                                    {{item.IdPengaduan}}
-                                </th>
-                                <th>
                                     {{item.IdPelanggan}}
                                 </th>
                                 <th>
-                                    {{item.WaktuLapor}}
+                                    {{item.JenisTarif}}
                                 </th>
                                 <th>
-                                    {{item.Status}}
+                                    {{item.JenisPemasangan}}
                                 </th>
+                                <th>
+                                    {{item.Daya}}
+                                </th>
+
                             </tr>
 
                         </tbody>

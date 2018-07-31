@@ -8,21 +8,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace AdminApps.Api.Admin
+namespace AdminApps.Api.User
 {
-
-    [Authorize(Roles ="Admin")]
-    public class AdminPelangganController : ApiController
+    public class PelangganPemasanganController : ApiController
     {
-
-        private PelangganDomain domain = new PelangganDomain();
+        // GET: api/AdminPemasangan
+        private PemasanganDomain domain = new PemasanganDomain();
         // GET: api/AdminPelanggan
         public async Task<IHttpActionResult> Get()
         {
             try
             {
-                var result = await domain.Get();
-                return Ok(result);
+                var profile = await User.PelangganProfile();
+                var results = await domain.Get();
+                return Ok(results.Where(O => O.IdPelanggan == profile.IdPelanggan).ToList());
             }
             catch (Exception ex)
             {
@@ -42,10 +41,22 @@ namespace AdminApps.Api.Admin
                 return BadRequest(ex.Message);
             }
         }
-
+        public async Task<IHttpActionResult> Post([FromBody]PemasanganModel value)
+        {
+            try
+            {
+                var pel = await User.PelangganProfile();
+                value.IdPelanggan = pel.IdPelanggan;
+                return Ok(await domain.SaveChange(value));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         // PUT: api/AdminPelanggan/5
-        public async Task<IHttpActionResult> Put(int id, [FromBody]PelangganModel value)
+        public async Task<IHttpActionResult> Put(int id, [FromBody]PemasanganModel value)
         {
             try
             {

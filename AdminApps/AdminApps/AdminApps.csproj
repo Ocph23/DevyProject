@@ -210,7 +210,12 @@
     <Compile Include="Api\Admin\AdminPemasanganController.cs" />
     <Compile Include="Api\Admin\AdminPengaduanController.cs" />
     <Compile Include="Api\Admin\AdminPetugasController.cs" />
-    <Compile Include="Api\User\PetugasDashboardController.cs" />
+    <Compile Include="Api\Petugas\PetugasPerubahanController.cs" />
+    <Compile Include="Api\Petugas\PetugasPemasanganController.cs" />
+    <Compile Include="Api\Petugas\PetugasPengaduanController.cs" />
+    <Compile Include="Api\Petugas\PetugasDashboardController.cs" />
+    <Compile Include="Api\User\PelangganPemasanganController.cs" />
+    <Compile Include="Api\User\PelangganPengaduanController.cs" />
     <Compile Include="Api\User\UserAccountController.cs" />
     <Compile Include="App_Start\ApplicationOAuthProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -237,16 +242,25 @@
   <ItemGroup>
     <Content Include="Apps\templates\admin\dashboard.html" />
     <Content Include="Apps\templates\admin\leftnav.html" />
+    <Content Include="Apps\templates\admin\pelanggan.html" />
     <Content Include="Apps\templates\admin\pemasangan.html" />
     <Content Include="Apps\templates\admin\pengaduan.html" />
+    <Content Include="Apps\templates\admin\perubahan.html" />
     <Content Include="Apps\templates\admin\petugas.html" />
     <Content Include="Apps\templates\admin\topnav.html" />
+    <Content Include="Apps\templates\admin\users.html" />
     <Content Include="Apps\templates\base.html" />
+    <Content Include="Apps\templates\petugas\dashboard.html" />
+    <Content Include="Apps\templates\petugas\leftnav.html" />
+    <Content Include="Apps\templates\petugas\pemasangan.html" />
+    <Content Include="Apps\templates\petugas\pengaduan.html" />
+    <Content Include="Apps\templates\petugas\perubahan.html" />
     <Content Include="assets\css\material-dashboard.css" />
     <Content Include="assets\css\material-dashboard.min.css" />
     <Content Include="assets\demo\demo.css" />
     <Content Include="assets\demo\demo.js" />
     <Content Include="assets\img\apple-icon.png" />
+    <Content Include="assets\img\blue-user-icon-32.jpg" />
     <Content Include="assets\img\cover.jpg" />
     <Content Include="assets\img\faces\avatar.jpg" />
     <Content Include="assets\img\faces\card-profile1-square.jpg" />
@@ -2669,7 +2683,6 @@
     <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Apps\templates\petugas\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

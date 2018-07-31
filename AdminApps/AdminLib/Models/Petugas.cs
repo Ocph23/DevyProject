@@ -79,16 +79,7 @@ namespace AdminLib.Models
                 using (var db = new OcphDbContext())
                 {
                     var result = (from a in db.Petugas.Select()
-                                  select new Petugas
-                                  {
-                                      Alamat = a.Alamat,
-                                      Email = a.Email,
-                                      idpetugas = a.idpetugas,
-                                      JK = a.JK,
-                                      Nama = a.Nama,
-                                      NoKontak = a.NoKontak,
-                                      UserId = a.UserId
-                                  }
+                                  select OcphMapper.Mapper.Map<Petugas>(a)
                             ).ToList();
 
                     return Task.FromResult(result);
@@ -110,16 +101,7 @@ namespace AdminLib.Models
                     var result = db.Petugas.Where(O => O.idpetugas == this.idpetugas).FirstOrDefault();
                     if (result != null)
                     {
-                        var item = new Petugas
-                        {
-                            Alamat = result.Alamat,
-                            Email = result.Email,
-                            idpetugas = result.idpetugas,
-                            JK = result.JK,
-                            Nama = result.Nama,
-                            NoKontak = result.NoKontak,
-                            UserId = result.UserId
-                        };
+                        var item = OcphMapper.Mapper.Map<Petugas>(result);
                         return Task.FromResult(item);
 
 

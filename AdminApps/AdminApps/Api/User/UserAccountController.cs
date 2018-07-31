@@ -33,7 +33,7 @@ namespace AdminApps.Api.User
                 pel.IdUser = register.Item1.Id;
 
                 PelangganDomain dom = new PelangganDomain();
-                var result =dom.SaveChange(pel);
+                var result =await dom.SaveChange(pel);
                 return Ok(register);
             }
             catch (Exception ex)

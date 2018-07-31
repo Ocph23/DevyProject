@@ -1,15 +1,11 @@
-using System; 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ocph.DAL;
- 
- namespace AdminLib.DTO 
-{ 
-     [TableName("pemasangan")] 
-     public class pemasangan :BaseNotify  
-   {
+using SharedApp;
+
+namespace AdminLib.DTO
+{
+    [TableName("pemasangan")] 
+     public class pemasangan : Ocph.DAL.BaseNotify
+    {
           [PrimaryKey("idpemasangan")] 
           [DbColumn("idpemasangan")] 
           public int idpemasangan 
@@ -52,7 +48,7 @@ using Ocph.DAL;
           } 
 
           [DbColumn("JenisTarif")] 
-          public string JenisTarif 
+          public JenisTarif JenisTarif 
           { 
                get{return _jenistarif;} 
                set{ 
@@ -113,7 +109,7 @@ using Ocph.DAL;
 
 
         [DbColumn("IdPetugas")]
-        public int IdPetugas
+        public int? IdPetugas
         {
             get { return _idpetugas; }
             set
@@ -123,17 +119,27 @@ using Ocph.DAL;
             }
         }
 
+
+        [DbColumn("JenisPemasangan")]
+        public JenisPemasangan JenisPemasangan
+        {
+            get { return _jenisPemangsangan; }
+            set {SetProperty(ref _jenisPemangsangan ,value); }
+        }
+
+
+        private JenisPemasangan _jenisPemangsangan;
         private int  _idpemasangan;
            private string  _peruntukan;
            private int  _daya;
            private string  _nogardu;
-           private string  _jenistarif;
+           private JenisTarif  _jenistarif;
            private double  _tarif;
            private double  _uangjaminan;
            private double  _biaya;
            private int  _statusubah;
            private int  _idpelanggan;
-        private int _idpetugas;
+        private int? _idpetugas;
     }
 }
 

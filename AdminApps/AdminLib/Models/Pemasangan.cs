@@ -20,10 +20,7 @@ namespace AdminLib.Models
 
         public PemasanganModel ConvertModel()
         {
-            return new PemasanganModel {
-                 Biaya=Biaya, Daya=Daya, Petugas=Petugas, IdPelanggan=IdPelanggan, idpemasangan=idpemasangan,  JenisTarif=JenisTarif,
-                   NoGardu=NoGardu, Peruntukan=Peruntukan, StatusUbah=StatusUbah, Tarif=Tarif, UangJaminan=UangJaminan
-            };
+            return OcphMapper.Mapper.Map<PemasanganModel>(this);
         }
 
         public Task<bool> Delete()
@@ -52,13 +49,12 @@ namespace AdminLib.Models
             {
                 try
                 {
-                    var result = from a in db.Pemasangan.Select().AsEnumerable()
-                                 join c in db.Petugas.Select() on a.IdPetugas equals c.idpetugas
-                                 join b in db.Pelanggan.Select() on a.IdPelanggan equals b.IdPelanggan
+                    var result = (from a in db.Pemasangan.Select().AsEnumerable()
+                                join b in db.Pelanggan.Select() on a.IdPelanggan equals b.IdPelanggan
                                  select new Pemasangan
                                  {
-                                     Biaya = a.Biaya,
-                                     Daya = a.Daya,
+                                     Biaya = a.Biaya, JenisPemasangan=a.JenisPemasangan, 
+                                     Daya = a.Daya, IdPetugas=a.IdPetugas,
                                      IdPelanggan = a.IdPelanggan,
                                      idpemasangan = a.idpemasangan,
                                      JenisTarif = a.JenisTarif,
@@ -66,27 +62,26 @@ namespace AdminLib.Models
                                      Pelanggan = new Pelanggan
                                      {
                                          Alamat = b.Alamat,
-                                         Email = b.Email, IdPelanggan=b.IdPelanggan, IdUser=b.IdUser, JK=b.JK,
-                                          Nama=b.Nama, NoIdentitas=b.NoIdentitas, NoKontak=b.NoKontak, ScanIdentitas=b.ScanIdentitas
+                                         Email = b.Email, IdPelanggan = b.IdPelanggan, IdUser = b.IdUser, JK = b.JK,
+                                         Nama = b.Nama, NoIdentitas = b.NoIdentitas, NoKontak = b.NoKontak, ScanIdentitas = b.ScanIdentitas
                                      },
                                      Peruntukan = a.Peruntukan,
                                      StatusUbah = a.StatusUbah,
                                      Tarif = a.Tarif,
                                      UangJaminan = a.UangJaminan,
 
-                                     Petugas = new Petugas
-                                     {
-                                         Alamat = c.Alamat,
-                                         Email = c.Email,
-                                         idpetugas = a.IdPetugas,
-                                         JK = c.JK,
-                                         Nama = c.Nama,
-                                         NoKontak = c.NoKontak,
-                                         UserId = c.UserId
-                                     }
-                                 };
+                                     
+                                 }).ToList();
+                    foreach(var item in result)
+                    {
+                        if(item.IdPetugas!=null && item.IdPetugas>0)
+                        {
+                            var p = db.Petugas.Where(O => O.idpetugas == item.IdPetugas).FirstOrDefault();
+                            item.Petugas = OcphMapper.Mapper.Map<Petugas>(p);
+                        }
+                    }
 
-                    return Task.FromResult(result.ToList());
+                    return Task.FromResult(result);
 
                 }
                 catch (Exception ex)
@@ -104,7 +99,6 @@ namespace AdminLib.Models
                 try
                 {
                     var result = (from a in db.Pemasangan.Where(O=>O.idpemasangan==idpemasangan)
-                                 join c in db.Petugas.Select() on a.IdPetugas equals c.idpetugas
                                  join b in db.Pelanggan.Select() on a.IdPelanggan equals b.IdPelanggan
                                  select new Pemasangan
                                  {
@@ -129,23 +123,23 @@ namespace AdminLib.Models
                                      Peruntukan = a.Peruntukan,
                                      StatusUbah = a.StatusUbah,
                                      Tarif = a.Tarif,
-                                     UangJaminan = a.UangJaminan,
-
-                                     Petugas = new Petugas
-                                     {
-                                         Alamat = c.Alamat,
-                                         Email = c.Email,
-                                         idpetugas = a.IdPetugas,
-                                         JK = c.JK,
-                                         Nama = c.Nama,
-                                         NoKontak = c.NoKontak,
-                                         UserId = c.UserId
-                                     }
+                                     UangJaminan = a.UangJaminan
                                  }).FirstOrDefault();
                     if (result == null)
                         throw new SystemException("Data Tidak Ditemukan");
+                    else
+                    {
+                        if (result.IdPetugas != null && result.IdPetugas > 0)
+                        {
+                            var p = db.Petugas.Where(O => O.idpetugas == result.IdPetugas);
+                            result.Petugas = OcphMapper.Mapper.Map<Petugas>(p);
+                        }
+
+                    }
 
                     return Task.FromResult(result);
+
+
 
                 }
                 catch (Exception ex)

@@ -1,1 +1,58 @@
-﻿PEMASANGAN
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="card card-plain">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title mt-0">DAFTAR PEMASANGAN</h4>
+                <p class="card-category"></p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="">
+                            <tr>
+                                <th>
+                                    NO
+                                </th>
+                                <th>
+                                    ID Pelanggan
+                                </th>
+
+                                <th>
+                                    JenisTarif
+                                </th>
+
+                                <th>
+                                    JenisPemasangan
+                                </th>
+                                <th>
+                                    Daya
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in Pemasangans">
+                                <td>
+                                    {{$index+1}}
+                                </td>
+                                <th>
+                                    {{item.IdPelanggan}}
+                                </th>
+                                <th>
+                                    {{item.JenisTarif}}
+                                </th>
+                                <th>
+                                    {{item.JenisPemasangan}}
+                                </th>
+                                <th>
+                                    {{item.Daya}}
+                                </th>
+                               
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

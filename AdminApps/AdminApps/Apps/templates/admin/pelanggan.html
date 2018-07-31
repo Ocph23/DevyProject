@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card card-plain">
             <div class="card-header card-header-primary">
-                <h4 class="card-title mt-0">DAFTAR PENGADUAN</h4>
+                <h4 class="card-title mt-0">DAFTAR PELANGGAN</h4>
                 <p class="card-category"></p>
             </div>
             <div class="card-body">
@@ -11,44 +11,53 @@
                         <thead class="">
                             <tr>
                                 <th>
-                                    NO
-                                </th>
-
-                                <th>
-                                    ID Pengaduan
+                                  NO
                                 </th>
                                 <th>
-                                    ID Pelanggan
+                                    ID PELANGGAN
                                 </th>
-
                                 <th>
-                                    Waktu Lapor
+                                    Jenis Kelamin
                                 </th>
-
                                 <th>
-                                    Status
+                                    Alamat
+                                </th>
+                                <th>
+                                    No Identitas
+                                </th>
+                                <th>
+                                    No Kontak
+                                </th>
+                                <th>
+                                    Email
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in Pengaduans">
+                            <tr ng-repeat="item in Pelanggans">
                                 <td>
                                     {{$index+1}}
                                 </td>
                                 <th>
-                                    {{item.IdPengaduan}}
+                                   {{item.IdPelanggan}}
                                 </th>
                                 <th>
-                                    {{item.IdPelanggan}}
+                                    {{item.JK}}
                                 </th>
                                 <th>
-                                    {{item.WaktuLapor}}
+                                    {{item.Alamat}}
                                 </th>
                                 <th>
-                                    {{item.Status}}
+                                    {{item.NoIdentitas}}
+                                </th>
+                                <th>
+                                    {{item.NoKontak}}
+                                </th>
+                                <th>
+                                   {{item.Email}}
                                 </th>
                             </tr>
-
+                          
                         </tbody>
                     </table>
                 </div>

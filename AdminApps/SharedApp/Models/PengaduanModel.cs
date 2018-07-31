@@ -1,4 +1,7 @@
-﻿using AdminLib.Models;
+﻿using AdminLib;
+using AdminLib.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +17,17 @@ namespace SharedApp.Models
             {
 
                 SetProperty(ref _idpengaduan, value);
+            }
+        }
+        public int IdPelanggan
+        {
+            get { return _idpelanggan; }
+            set
+            {
+
+                SetProperty(ref _idpelanggan, value);
+
+
             }
         }
 
@@ -47,6 +61,7 @@ namespace SharedApp.Models
             }
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public PengaduanStatus Status
         {
             get { return _status; }
@@ -57,7 +72,7 @@ namespace SharedApp.Models
             }
         }
 
-        public int IdPetugas
+        public int? IdPetugas
         {
             get { return _idpetugas; }
             set
@@ -74,14 +89,12 @@ namespace SharedApp.Models
         private DateTime _waktulapor;
         private DateTime _waktuselesai;
         private PengaduanStatus _status;
-        private int _idpetugas;
+        private int? _idpetugas;
+        private int _idpelanggan;
 
         public Pengaduan ConvertModel()
         {
-            return new Pengaduan {
-                 IdPengaduan=IdPengaduan, IdPetugas=IdPetugas, Pengaduan=Pengaduan, Petugas=this.Petugas,
-                  Status=Status, WaktuLapor=WaktuLapor, WaktuSelesai=WaktuSelesai
-            };
+            return OcphMapper.Mapper.Map<Pengaduan>(this);
         }
     }
 }

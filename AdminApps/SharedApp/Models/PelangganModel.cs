@@ -1,4 +1,6 @@
 ﻿using AdminLib.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -45,6 +47,7 @@ namespace SharedApp.Models
             }
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public Gender JK
         {
             get { return _jk; }
@@ -117,6 +120,8 @@ namespace SharedApp.Models
             }
         }
 
+      
+
         private int _idpelanggan;
         private string _nama;
         private Gender _jk;
@@ -126,6 +131,7 @@ namespace SharedApp.Models
         private string _nokontak;
         private string _email;
         private string _iduser;
+       
     }
 }
 

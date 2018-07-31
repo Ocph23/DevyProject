@@ -8,21 +8,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace AdminApps.Api.Admin
+namespace AdminApps.Api.Petugas
 {
-
-    [Authorize(Roles ="Admin")]
-    public class AdminPelangganController : ApiController
+    public class PetugasPemasanganController : ApiController
     {
-
-        private PelangganDomain domain = new PelangganDomain();
+        // GET: api/AdminPemasangan
+        private PemasanganDomain domain = new PemasanganDomain();
         // GET: api/AdminPelanggan
         public async Task<IHttpActionResult> Get()
         {
             try
             {
-                var result = await domain.Get();
-                return Ok(result);
+                PetugasModel profile = await User.GetPetugas();
+                var results = await domain.Get();
+                return Ok(results.Where(O => O.IdPetugas == profile.idpetugas && O.JenisPemasangan== SharedApp.JenisPemasangan.Baru).ToList());
             }
             catch (Exception ex)
             {
@@ -42,10 +41,10 @@ namespace AdminApps.Api.Admin
                 return BadRequest(ex.Message);
             }
         }
-
+     
 
         // PUT: api/AdminPelanggan/5
-        public async Task<IHttpActionResult> Put(int id, [FromBody]PelangganModel value)
+        public async Task<IHttpActionResult> Put(int id, [FromBody]PemasanganModel value)
         {
             try
             {
@@ -58,16 +57,5 @@ namespace AdminApps.Api.Admin
         }
 
         // DELETE: api/AdminPelanggan/5
-        public async Task<IHttpActionResult> Delete(int id)
-        {
-            try
-            {
-                return Ok(await domain.Delete(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
     }
 }

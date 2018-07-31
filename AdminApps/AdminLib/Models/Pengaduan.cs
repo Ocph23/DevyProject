@@ -13,10 +13,7 @@ namespace AdminLib.Models
 
         public PengaduanModel ConvertModel()
         {
-            return new PengaduanModel {
-                 IdPengaduan = IdPengaduan, IdPetugas=IdPetugas, Pengaduan=Pengaduan, Status=Status,
-                  WaktuLapor=WaktuLapor, WaktuSelesai=WaktuSelesai
-            };
+            return  OcphMapper.Mapper.Map<PengaduanModel>(this);
         }
 
         public Task<bool> Delete()
@@ -46,26 +43,28 @@ namespace AdminLib.Models
                 try
                 {
                     var result = from a in db.Pengaduan.Select()
-                                 join b in db.Petugas.Select() on a.IdPetugas equals b.idpetugas
+                                 
                                  select new Pengaduan
                                  {
-                                     IdPengaduan = a.IdPengaduan,
+                                     IdPengaduan = a.IdPengaduan, IdPelanggan=a.IdPelanggan,
                                      IdPetugas = a.IdPetugas,
                                      Pengaduan = a.Pengaduan,
                                      Status = a.Status,
                                      WaktuLapor = a.WaktuLapor,
-                                     WaktuSelesai = a.WaktuSelesai,
-                                     Petugas = new Petugas
-                                     {
-                                         Alamat = b.Alamat,
-                                         Email = b.Email,
-                                         idpetugas = b.idpetugas,
-                                         JK = b.JK,
-                                         Nama = b.Nama,
-                                         NoKontak = b.NoKontak,
-                                         UserId = b.UserId
-                                     }
+                                     WaktuSelesai = a.WaktuSelesai
+                                    
                                  };
+                    foreach(Pengaduan item in result.ToList())
+                    {
+                        if (item.IdPetugas != null)
+                        {
+                            var res = db.Petugas.Where(O => O.idpetugas == item.IdPetugas).FirstOrDefault();
+                            item.Petugas = res!=null?OcphMapper.Mapper.Map<Petugas>(res):null;
+                        }
+                       
+                    }
+
+
 
                     return Task.FromResult(result.ToList());
 

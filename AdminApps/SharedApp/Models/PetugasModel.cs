@@ -1,5 +1,7 @@
 ﻿using AdminLib;
 using AdminLib.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +30,7 @@ namespace SharedApp.Models
             }
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public Gender JK
         {
             get { return _jk; }

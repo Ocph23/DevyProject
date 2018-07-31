@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace AdminApps.Api.User
+namespace AdminApps.Api.Petugas
 {
     public class PetugasDashboardController : ApiController
     {

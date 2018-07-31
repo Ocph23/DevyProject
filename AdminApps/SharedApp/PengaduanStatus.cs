@@ -6,11 +6,20 @@ namespace SharedApp
 {
     public enum PengaduanStatus
     {
-        Proses,Selesai
+      Baru, Proses,Selesai
     }
 
     public enum Gender
     {
         Pria,Wanita
+    }
+
+    public enum JenisTarif{
+        Prabayar,Pascabayar
+    }
+
+    public enum JenisPemasangan
+    {
+        Baru, UbahTarif, UbahDaya
     }
 }

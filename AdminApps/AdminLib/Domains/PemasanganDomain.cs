@@ -21,9 +21,10 @@ namespace AdminLib.Domains
             var data = new Pemasangan();
             var results = await data.Get();
             List<PemasanganModel> list = new List<PemasanganModel>();
-            foreach (var item in list)
+            foreach (var item in results)
             {
-                list.Add(item);
+                var item1 = OcphMapper.Mapper.Map<PemasanganModel>(item);
+                list.Add(item1);
             }
             return list;
         }

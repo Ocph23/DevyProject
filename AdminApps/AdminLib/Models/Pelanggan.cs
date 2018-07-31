@@ -39,17 +39,62 @@ namespace AdminLib.Models
 
         public Task<List<Pelanggan>> Get()
         {
-            throw new NotImplementedException();
+            using (var db = new OcphDbContext())
+            {
+                try
+                {
+                    var result = db.Pelanggan.Select();
+                    var list = new List<Pelanggan>();
+                   foreach(var item in result)
+                    {
+                        list.Add(OcphMapper.Mapper.Map<Pelanggan>(item));
+                    }
+                    return Task.FromResult(list);
+                }
+                catch (Exception ex)
+                {
+                    throw new SystemException(ex.Message);
+                }
+            }
         }
 
         public Task<Pelanggan> GetById()
         {
-            throw new NotImplementedException();
+            using (var db = new OcphDbContext())
+            {
+                try
+                {
+                    var result = db.Pelanggan.Where(O=>O.IdPelanggan==IdPelanggan).FirstOrDefault();
+                    if (result != null)
+                        return Task.FromResult(OcphMapper.Mapper.Map<Pelanggan>(result));
+                    else
+                        throw new SystemException("Data Tidak Ditemukan");
+                }
+                catch (Exception ex)
+                {
+                    throw new SystemException(ex.Message);
+                }
+            }
         }
 
         public Task<Pelanggan> SaveChange()
         {
-            throw new NotImplementedException();
+            using (var db = new OcphDbContext())
+            {
+                try
+                {
+                    IdPelanggan = db.Pelanggan.InsertAndGetLastID(this);
+                    if (IdPelanggan <= 0)
+                        throw new SystemException("Data Tidak Tersimpan");
+                    return Task.FromResult(this as Pelanggan);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw new SystemException(ex.Message);
+                }
+            }
         }
     }
 }

@@ -24,7 +24,20 @@ namespace AdminApps
 
             return null;
         }
-  
+
+        public static async Task<PelangganModel> PelangganProfile(this IPrincipal user)
+        {
+            var userid = user.Identity.GetUserId();
+            if (!string.IsNullOrEmpty(userid))
+            {
+                PelangganDomain domain = new PelangganDomain();
+                var result = await domain.GetPelangganByUserId(userid);
+                return result;
+            }
+
+            return null;
+        }
+
 
     }
 }

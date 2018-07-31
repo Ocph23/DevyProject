@@ -1,4 +1,7 @@
-﻿using AdminLib.Models;
+﻿using AdminLib;
+using AdminLib.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,7 +51,9 @@ namespace SharedApp.Models
             }
         }
 
-        public string JenisTarif
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public JenisTarif JenisTarif
         {
             get { return _jenistarif; }
             set
@@ -108,7 +113,13 @@ namespace SharedApp.Models
             }
         }
 
-      
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public JenisPemasangan JenisPemasangan
+        {
+            get { return _jenisPemangsangan; }
+            set { SetProperty(ref _jenisPemangsangan, value); }
+        }
 
         public Petugas Petugas
         {
@@ -116,9 +127,18 @@ namespace SharedApp.Models
             set {SetProperty(ref  _petugas , value); }
         }
 
+        public int? IdPetugas
+        {
+            get { return _idpetugas; }
+            set
+            {
+
+                SetProperty(ref _idpetugas, value);
+            }
+        }
 
 
-     
+
 
         public Pelanggan Pelanggan
         {
@@ -132,30 +152,18 @@ namespace SharedApp.Models
         private string _peruntukan;
         private int _daya;
         private string _nogardu;
-        private string _jenistarif;
+        private JenisTarif _jenistarif;
         private double _tarif;
         private double _uangjaminan;
         private double _biaya;
         private int _statusubah;
         private int _idpelanggan;
+        private JenisPemasangan _jenisPemangsangan;
+        private int? _idpetugas;
 
         public Pemasangan ConvertModel()
         {
-            return new Pemasangan
-            {
-                Pelanggan=Pelanggan,
-                Biaya = Biaya,
-                Daya = Daya, 
-                Petugas = Petugas,
-                IdPelanggan = IdPelanggan,
-                idpemasangan = idpemasangan,
-                JenisTarif = JenisTarif,
-                NoGardu = NoGardu,
-                Peruntukan = Peruntukan,
-                StatusUbah = StatusUbah,
-                Tarif = Tarif,
-                UangJaminan = UangJaminan
-            };
+            return OcphMapper.Mapper.Map<Pemasangan>(this);
         }
     }
 }

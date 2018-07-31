@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AdminLib.Domains;
+using SharedApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace AdminApps.Api.Admin
@@ -10,10 +13,14 @@ namespace AdminApps.Api.Admin
     [Authorize(Roles = "Admin")]
     public class AdminPengaduanController : ApiController
     {
+        private PengaduanDomain domain=new PengaduanDomain();
+
         // GET: api/AdminPengaduan
-        public IEnumerable<string> Get()
+        public async Task<IHttpActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var result = await domain.Get();
+
+            return Ok(result);
         }
 
         // GET: api/AdminPengaduan/5

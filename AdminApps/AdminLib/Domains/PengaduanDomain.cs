@@ -39,7 +39,7 @@ namespace AdminLib.Domains
         {
 
             var model = item.ConvertModel();
-            var result = await model.GetById();
+            var result = await model.SaveChange();
             return result.ConvertModel();
         }
     }

@@ -20,7 +20,20 @@ namespace AdminLib.DTO
 
                     SetProperty(ref _idpengaduan, value);
                      }
-          } 
+          }
+
+        [DbColumn("IdPelanggan")]
+        public int IdPelanggan
+        {
+            get { return _idpelanggan; }
+            set
+            {
+
+                SetProperty(ref _idpelanggan, value);
+
+
+            }
+        }
 
           [DbColumn("Pengaduan")] 
           public string Pengaduan 
@@ -63,7 +76,7 @@ namespace AdminLib.DTO
           } 
 
           [DbColumn("IdPetugas")] 
-          public int IdPetugas 
+          public int? IdPetugas 
           { 
                get{return _idpetugas;} 
                set{ 
@@ -77,8 +90,9 @@ namespace AdminLib.DTO
            private DateTime  _waktulapor;
            private DateTime  _waktuselesai;
            private PengaduanStatus  _status;
-           private int  _idpetugas;
-      }
+           private int?  _idpetugas;
+        private int _idpelanggan;
+    }
 }
 
 

@@ -1,6 +1,7 @@
 ﻿using AdminLib.Domains;
 using SharedApp.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -16,7 +17,8 @@ namespace AdminApps.Api.Admin
         {
             try
             {
-                return Ok(await domain.Get());
+                var results = await domain.Get();
+                return Ok(results.Where(O=>O.JenisPemasangan== SharedApp.JenisPemasangan.Baru).ToList());
             }
             catch (Exception ex)
             {

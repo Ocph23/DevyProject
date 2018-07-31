@@ -21,9 +21,9 @@ namespace AdminLib.Domains
             var data = new Pelanggan();
             var results = await data.Get();
             List<PelangganModel> list = new List<PelangganModel>();
-            foreach(var item in list)
+            foreach(var item in results)
             {
-                list.Add(item);
+                list.Add(OcphMapper.Mapper.Map<PelangganModel>(item));
             }
             return list;
         }
@@ -40,6 +40,29 @@ namespace AdminLib.Domains
             var data = item.ConvertModel();
             var result = await data.SaveChange();
             return result.ConvertModel();
+        }
+
+        public Task<PelangganModel> GetPelangganByUserId(string userid)
+        {
+
+            using (var db = new OcphDbContext())
+            {
+                try
+                {
+                    var result = db.Pelanggan.Where(O => O.IdUser == userid).FirstOrDefault();
+                    if (result == null)
+                        throw new SystemException("Account Anda Belum Terdaftar Sebagai Pelanggan");
+
+                    var pel = OcphMapper.Mapper.Map<Pelanggan>(result);
+
+                    return Task.FromResult(OcphMapper.Mapper.Map<PelangganModel>(pel));
+                }
+                catch (Exception ex)
+                {
+
+                    throw new SystemException(ex.Message);
+                }
+            }
         }
     }
 }
