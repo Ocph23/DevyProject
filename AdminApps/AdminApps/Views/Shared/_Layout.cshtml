@@ -15,13 +15,11 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
-<body class="">
-    <div class="wrapper " ng-app="app">
-        @RenderBody()
-
-    </div>
+<body ng-app="app">
+    @RenderBody()
+   
     @Scripts.Render("~/bundles/jquery")
-     @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using AndroidApp.Views;
 using Xamarin.Forms.Xaml;
 using System.Threading.Tasks;
+using Plugin.InputKit.Shared.Controls;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace AndroidApp

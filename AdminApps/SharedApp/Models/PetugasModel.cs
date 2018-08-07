@@ -76,6 +76,16 @@ namespace SharedApp.Models
             }
         }
 
+        public byte[] Foto
+        {
+            get { return _Foto; }
+            set
+            {
+
+                SetProperty(ref _Foto, value);
+            }
+        }
+
         private int _idpetugas;
         private string _nama;
         private Gender _jk;
@@ -83,7 +93,6 @@ namespace SharedApp.Models
         private string _nokontak;
         private string _email;
         private string _userid;
-
-       
+        private byte[] _Foto;
     }
 }

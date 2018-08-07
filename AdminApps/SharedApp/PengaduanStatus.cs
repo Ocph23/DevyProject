@@ -4,9 +4,9 @@ using System.Text;
 
 namespace SharedApp
 {
-    public enum PengaduanStatus
+    public enum Status
     {
-      Baru, Proses,Selesai
+      None, Proses,Selesai,Tolak
     }
 
     public enum Gender

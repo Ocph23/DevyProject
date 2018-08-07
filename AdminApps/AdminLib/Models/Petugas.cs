@@ -48,7 +48,7 @@ namespace AdminLib.Models
                     {
                         var item = new Petugas
                         {
-                            Alamat = result.Alamat,
+                            Alamat = result.Alamat, Foto=result.Foto,
                             Email = result.Email,
                             idpetugas = result.idpetugas,
                             JK = result.JK,
@@ -134,7 +134,7 @@ namespace AdminLib.Models
                     }
                     else
                     {
-                        if (db.Petugas.Update(O => new { O.Alamat, O.JK, O.Nama, O.NoKontak }, this, O => O.idpetugas == this.idpetugas))
+                        if (db.Petugas.Update(O => new { O.Alamat, O.JK, O.Nama, O.NoKontak, O.Foto }, this, O => O.idpetugas == this.idpetugas))
                             return Task.FromResult(this);
                         else
                             throw new SystemException("Data Tidak Tersimpan");

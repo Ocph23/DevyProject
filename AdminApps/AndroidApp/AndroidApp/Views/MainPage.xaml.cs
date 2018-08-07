@@ -18,22 +18,34 @@ namespace AndroidApp.Views
             menuList.Add(new MasterPageItem()
             {
                 Title = "Home",
-                Icon = "homeicon.png",
+                Icon = "awesomehome.png",
                 TargetType = typeof(Home)
+            });
+            menuList.Add(new MasterPageItem()
+            {
+                Title = "Layanan Pemasangan Baru",
+                Icon = "awesomeedit.png",
+                TargetType = typeof(Pengaduan)
+            });
+            menuList.Add(new MasterPageItem()
+            {
+                Title = "Layanan Perubahan",
+                Icon = "awesomeexchange.png",
+                TargetType = typeof(Pengaduan)
             });
 
 
             menuList.Add(new MasterPageItem()
             {
-                Title = "Pengaduan",
-                Icon = "contacticon.png",
+                Title = "Layanan Pengaduan Gangguan",
+                Icon = "awesomeexclamation.png",
                 TargetType = typeof(Pengaduan)
             });
 
             menuList.Add(new MasterPageItem()
             {
                 Title = "About",
-                Icon = "homeicon.png",
+                Icon = "awesomehelp.png",
                 TargetType = typeof(AboutPage)
             });
 
@@ -50,6 +62,11 @@ namespace AndroidApp.Views
             Type page = item.TargetType;
             Detail = new NavigationPage((Page)Activator.CreateInstance(page));
             IsPresented = false;
+        }
+
+        private void profileGesture_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

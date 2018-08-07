@@ -55,7 +55,7 @@ namespace AdminLib.Models
                                  {
                                      Biaya = a.Biaya, JenisPemasangan=a.JenisPemasangan, 
                                      Daya = a.Daya, IdPetugas=a.IdPetugas,
-                                     IdPelanggan = a.IdPelanggan,
+                                     IdPelanggan = a.IdPelanggan, Status=a.Status,
                                      idpemasangan = a.idpemasangan,
                                      JenisTarif = a.JenisTarif,
                                      NoGardu = a.NoGardu,
@@ -164,7 +164,7 @@ namespace AdminLib.Models
                     }
                     else
                     {
-                        if (!db.Pemasangan.Update(O => new { O.IdPetugas, O.Biaya, O.Daya, O.IdPelanggan,O.JenisTarif,O.NoGardu,O.Peruntukan,O.StatusUbah,O.Tarif,O.UangJaminan}, this, O => O.idpemasangan== idpemasangan))
+                        if (!db.Pemasangan.Update(O => new { O.IdPetugas, O.Biaya, O.Daya,O.Status, O.IdPelanggan,O.JenisTarif,O.NoGardu,O.Peruntukan,O.StatusUbah,O.Tarif,O.UangJaminan}, this, O => O.idpemasangan== idpemasangan))
                             throw new SystemException("Data Tidak Tersimpan");
                     }
 

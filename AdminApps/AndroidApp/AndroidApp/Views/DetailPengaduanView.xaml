@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidApp.Views.DetailPengaduanView">
+    <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackLayout  Grid.Row="0" BackgroundColor="#0C9185" >
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Image Source="Logo_PLN.png" WidthRequest="100" HeightRequest="100"/>
+                    <Label Grid.Row="1" FontSize="Large" Margin="5" TextColor="White" HorizontalOptions="Center" Text="Detail Perubahan Layanan Anda"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <ScrollView Grid.Row="2" Margin="2">
+                <StackLayout Margin="5">
+                    <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
+                        <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Pengaduan !"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="150" TextColor="#0C9185" Text="Pengaduan"/>
+                            <StackLayout HorizontalOptions="StartAndExpand">
+                                <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="Ini adalah  Keterangan  perubahan Saya yang adalah Contoh "></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Lapor"/>
+                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Selesai"/>
+                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
+                            <Label TextColor="#0C9185" Text="Ajenk"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
+                            <Label TextColor="#0C9185" Text="Proccess"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
+                        <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Pengaduan !"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="150" TextColor="#0C9185" Text="Pengaduan"/>
+                            <StackLayout HorizontalOptions="StartAndExpand">
+                                <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="Ini adalah  Keterangan  perubahan Saya yang adalah Contoh "></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Lapor"/>
+                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Selesai"/>
+                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
+                            <Label TextColor="#0C9185" Text="Ajenk"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
+                            <Label TextColor="#0C9185" Text="Proccess"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

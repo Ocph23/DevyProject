@@ -1,6 +1,7 @@
 ﻿'use strict';
 angular.module('admin.routes', [])
-    .config(function ($stateProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.when('/admin', '/admin/dashboard');
         $stateProvider
             .state('admin', {
                 abstract: true,
@@ -13,6 +14,12 @@ angular.module('admin.routes', [])
                 parent: 'admin',
                 templateUrl: '/apps/templates/admin/dashboard.html',
                 controller: 'DashboardController'
+            })
+            .state('admin-profile', {
+                url: '/profile',
+                parent: 'admin',
+                templateUrl: '/apps/templates/admin/profile.html',
+                controller: 'PetugasProfileController'
             })
 
             .state('admin-petugas', {
@@ -39,7 +46,7 @@ angular.module('admin.routes', [])
                 templateUrl: '/apps/templates/admin/pelanggan.html',
                 controller: 'PelangganController'
             })
-            .state('admin-perubahann', {
+            .state('admin-perubahan', {
                 url: '/perubahan',
                 parent: 'admin',
                 templateUrl: '/apps/templates/admin/perubahan.html',

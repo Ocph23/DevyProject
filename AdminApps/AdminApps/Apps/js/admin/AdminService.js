@@ -5,10 +5,64 @@
     .factory("AdminPemasanganServices", AdminPemasanganServices)
     .factory("AdminPerubahanServices", AdminPerubahanServices)
     .factory("AdminPetugasServices", AdminPetugasServices)
+    .factory("UserServices", UserServices)
+    .factory("MessageServices",MessageServices)
     ;
 
 
-function AdminDashboard($http, $q) {
+
+function UserServices($http,$q,MessageServices,$rootScope) {
+    var def = $q.defer();
+    var service = {
+        instance: false,
+        get: get, put: put
+    };
+
+    function get() {
+        if (!this.instance) {
+            $http({
+                method: 'Get',
+                url: '/Api/UserProfile',
+            }).then(function (response) {
+                service.Profile = response.data;
+                $rootScope.Profile = service.Profile;
+                def.resolve(response.data);
+            }, function (response) {
+                if (response.status = 404)
+                    MessageServices.error("Not Found Link");
+                else
+                    MessageServices.error(response.data.Message);
+                def.reject();
+            });
+        } else
+            def.resolve(this.Profile);
+
+        return def.promise;
+    }
+
+    function put(model) {
+        $http({
+            method: 'put',
+            url: '/Api/UserProfile?Id=' + model.idpemasangan,
+            data: model
+        }).then(function (response) {
+            MessageServices.success("Data Tersimpan");
+            service.instance = true;
+            def.resolve(response.data);
+
+            }, function (response) {
+                MessageServices.error(response.data.Message);
+            def.reject();
+        });
+        return def.promise;
+    }
+
+   // service.get();
+    return service;
+
+}
+
+function AdminDashboard($http, $q,MessageServices) {
     var def = $q.defer();
     var service = {
         instance: false,
@@ -23,13 +77,15 @@ function AdminDashboard($http, $q) {
                 url: '/Api/AdminDashboard',
             }).then(function (response) {
                 service.Data = response.data;
-
+             
                 service.instance = true;
                 def.resolve(response.data);
 
             }, function (response) {
                 if (response.status = 404)
-                    alert("Anda Tidak memiliki Hak Akses");
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
+                else
+                    MessageServices.error(response.data.Message);
                 def.reject();
             });
         } else
@@ -42,7 +98,7 @@ function AdminDashboard($http, $q) {
     return service;
 }
 
-function AdminPelangganServices($http, $q) {
+function AdminPelangganServices($http, $q, MessageServices) {
     var def = $q.defer();
     var service = {
         instance:false,
@@ -66,7 +122,9 @@ function AdminPelangganServices($http, $q) {
 
             }, function (response) {
                 if (response.status = 404)
-                    alert("Anda Tidak memiliki Hak Akses");
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
+                else
+                    MessageServices.error(response.data.Message);
                 def.reject();
             });
         } else
@@ -85,12 +143,12 @@ function AdminPelangganServices($http, $q) {
 
 }
 
-function AdminPengaduanServices($http, $q) {
+function AdminPengaduanServices($http, $q, MessageServices) {
     var def = $q.defer();
     var service = {
         instance: false,
         Pengaduans: [],
-        get: get, verify: verify
+        get: get, put:put, verify: verify
     };
 
     function get() {
@@ -119,6 +177,26 @@ function AdminPengaduanServices($http, $q) {
 
         return def.promise;
     }
+    function put(model) {
+        $http({
+            method: 'put',
+            url: '/Api/AdminPengaduan?Id=' + model.IdPengaduan, data: model
+        }).then(function (response) {
+            MessageServices.success("Data Tersimpan");
+            service.instance = true;
+            def.resolve(response.data);
+
+        }, function (response) {
+            if (response.status = 404)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
+            def.reject();
+        });
+
+
+        return def.promise;
+    }
 
 
     function verify() {
@@ -130,7 +208,7 @@ function AdminPengaduanServices($http, $q) {
 }
 
 
-function AdminPemasanganServices($http, $q) {
+function AdminPemasanganServices($http, $q, MessageServices) {
     var def = $q.defer();
     var service = {
         instance: false,
@@ -153,10 +231,10 @@ function AdminPemasanganServices($http, $q) {
                 def.resolve(response.data);
 
             }, function (response) {
-                if (response.status = 404)
-                    alert("Not Found Link");
+                if (response.status = 401)
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
                 else
-                    alert(response.data);
+                    MessageServices.error(response.data.Message);
                 def.reject();
             });
         } else
@@ -166,8 +244,26 @@ function AdminPemasanganServices($http, $q) {
     }
 
 
-    function verify() {
+    function verify(model) {
+        $http({
+            method: 'put',
+            url: '/Api/AdminPemasangan?Id=' + model.idpemasangan,
+            data: model
+        }).then(function (response) {
+            alert("Data Tersimpan");
+            service.instance = true;
+            def.resolve(response.data);
 
+        }, function (response) {
+            if (response.status = 401)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
+            def.reject();
+        });
+
+
+        return def.promise;
     }
 
     service.get();
@@ -175,7 +271,7 @@ function AdminPemasanganServices($http, $q) {
 }
 
 
-function AdminPerubahanServices($http, $q) {
+function AdminPerubahanServices($http, $q, MessageServices) {
     var def = $q.defer();
     var service = {
         instance: false,
@@ -187,21 +283,21 @@ function AdminPerubahanServices($http, $q) {
         if (!this.instance) {
             $http({
                 method: 'Get',
-                url: '/Api/AdminPerubahan',
+                url: '/api/AdminPerubahan',
             }).then(function (response) {
 
                 angular.forEach(response.data, function (value, index) {
-                    service.Pengaduans.push(value);
+                    service.Perubahans.push(value);
                 })
 
                 service.instance = true;
                 def.resolve(response.data);
 
             }, function (response) {
-                if (response.status = 404)
-                    alert("Not Found Link");
+                if (response.status = 401)
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
                 else
-                    alert(response.data);
+                    MessageServices.error(response.data.Message);
                 def.reject();
             });
         } else
@@ -211,8 +307,26 @@ function AdminPerubahanServices($http, $q) {
     }
 
 
-    function verify() {
+    function verify(model) {
+        $http({
+            method: 'put',
+            url: '/Api/AdminPerubahan?Id=' + model.idpemasangan,
+            data: model
+        }).then(function (response) {
+            MessageServices.success("Data Tersimpan");
+            service.instance = true;
+            def.resolve(response.data);
 
+        }, function (response) {
+            if (response.status = 401)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
+            def.reject();
+        });
+
+
+        return def.promise;
     }
 
     service.get();
@@ -220,7 +334,7 @@ function AdminPerubahanServices($http, $q) {
 }
 
 
-function AdminPetugasServices($http,$q) {
+function AdminPetugasServices($http,$q,MessageServices) {
     var def = $q.defer();
     var service = {
         instance: false,
@@ -237,14 +351,15 @@ function AdminPetugasServices($http,$q) {
                 angular.forEach(response.data, function (value, index) {
                     service.Petugas.push(value);
                 })
+              
                 service.instance = true;
                 def.resolve(response.data);
 
             }, function (response) {
-                if (response.status = 404)
-                    alert("Not Found Link");
+                if (response.status = 401)
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
                 else
-                    alert(response.data);
+                    MessageServices.error(response.data.Message);
                 def.reject();
             });
         } else
@@ -259,13 +374,16 @@ function AdminPetugasServices($http,$q) {
             url: '/Api/AdminPetugas',data:model
         }).then(function (response) {
             service.Petugas.push(response.data);
-            alert("Data Tersimpan");
+            MessageServices.success("Data Berhasil Disimpan");
             service.instance = true;
             def.resolve(response.data);
 
-        }, function (response) {
-            alert(response.data);
-            def.reject();
+            }, function (response) {
+                if (response.status = 401)
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
+                else
+                    MessageServices.error(response.data.Message);
+                def.reject();
             });
 
 
@@ -274,8 +392,15 @@ function AdminPetugasServices($http,$q) {
 
     function put(model) {
         $http({
-            method: 'put',
-            url: '/Api/AdminPetugas?Id='+model.idpetugas, data: model
+            method: 'put', 
+            headers: {
+                "cache-control": "no-cache",
+            },
+            processData: false,
+            contentType: false,
+            mimeType: "multipart/form-data",
+            url: '/Api/AdminPetugas?Id=' + model.idpetugas,
+            data: model
         }).then(function (response) {
             service.Petugas.push(response.data);
             alert("Data Tersimpan");
@@ -284,7 +409,10 @@ function AdminPetugasServices($http,$q) {
 
         }, function (response) {
 
-            alert(response.data.Message);
+            if (response.status = 401)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
             def.reject();
         });
 
@@ -299,13 +427,16 @@ function AdminPetugasServices($http,$q) {
         }).then(function (response) {
             var index = service.Petugas.indexOf(model, 1);
             service.Petugas.splice(index, 1);
-            alert("Data Terhapus");
+            MessageServices.success("Data Terhapus");
             service.instance = true;
             def.resolve(response.data);
 
         }, function (response) {
 
-            alert(response.data.Message);
+            if (response.status = 401)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
             def.reject();
         });
 
@@ -320,5 +451,41 @@ function AdminPetugasServices($http,$q) {
     }
 
     service.get();
+    return service;
+}
+
+
+function MessageServices($q) {
+
+    var service = {
+        icon: {},
+        success: success, error: error
+    };
+    
+    function success(message) {
+        callMessage('success', message);
+    }
+
+    function error(message) {
+        callMessage('danger', message);
+    }
+
+
+    function callMessage(type,message) {
+        $.notify({
+            icon: "add_alert",
+            message: message
+
+        }, {
+                type: type,
+                timer: 1000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+    }
+
+
     return service;
 }

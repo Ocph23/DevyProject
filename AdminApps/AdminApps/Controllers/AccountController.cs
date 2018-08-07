@@ -84,9 +84,9 @@ namespace AdminApps.Controllers
                     if(user!=null)
                     {
                         if (UserManager.IsInRole(user.Id,"Admin"))
-                            return RedirectToLocal("/Home/Admin");
+                            return RedirectToLocal("/Home/Admin/#!/admin");
                         else if(UserManager.IsInRole(user.Id,"Petugas"))
-                            return RedirectToLocal("/Home/Petugas");
+                            return RedirectToLocal("/Home/Petugas/#!petugas");
                     }
 
                     return RedirectToLocal(returnUrl);

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+               xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="AndroidApp.Views.ProfileEditView">
+    <ContentPage.Content>
+        <Grid BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackLayout  Grid.Row="0" BackgroundColor="#0C9185">
+          
+                <StackLayout Margin="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <controls:CircleImage  BackgroundColor="White" BorderColor="Yellow" 
+                                      BorderThickness="1" Source="awesomeuser.png" 
+                                      Aspect="AspectFill">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">100</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">100</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                        <controls:CircleImage.GestureRecognizers>
+                            <ClickGestureRecognizer x:Name="profileGesture" Clicked="profileGesture_Clicked"></ClickGestureRecognizer>
+                        </controls:CircleImage.GestureRecognizers>
+                    </controls:CircleImage>
+
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="20" Grid.Row="1" Spacing="15">
+                <StackLayout Orientation="Horizontal">
+                    <Label VerticalOptions="Center" TextColor="#0C9185" FontSize="Small" Text="Nama" WidthRequest="100"></Label>
+                    <StackLayout HorizontalOptions="FillAndExpand"  TranslationX="10">
+                        <Entry TextColor="#0C9185" Placeholder="Nama" FontSize="Small"></Entry>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label VerticalOptions="Center" TextColor="#0C9185" FontSize="Small" Text="Jenis Kelamin" WidthRequest="100"></Label>
+                    <StackLayout HorizontalOptions="FillAndExpand"  TranslationX="10">
+                        <input:RadioButtonGroupView Orientation="Horizontal" >
+                            <input:RadioButton TextFontSize="15"  Text="Pria" />
+                            <input:RadioButton Text="Wanita" TextFontSize="15" />
+                        </input:RadioButtonGroupView>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label VerticalOptions="Center" TextColor="#0C9185" FontSize="Small" Text="Alamat" WidthRequest="100"></Label>
+                    <StackLayout HorizontalOptions="FillAndExpand"  TranslationX="10">
+                        <Entry TextColor="#0C9185" Placeholder="Alamat" FontSize="Small"></Entry>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label VerticalOptions="Center" TextColor="#0C9185" FontSize="Small" Text="No Kontak" WidthRequest="100"></Label>
+                    <StackLayout HorizontalOptions="FillAndExpand"  TranslationX="10">
+                        <Entry TextColor="#0C9185" Placeholder="Nama" FontSize="Small"></Entry>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label VerticalOptions="Center" TextColor="#0C9185" FontSize="Small" Text="Email" WidthRequest="100"></Label>
+                    <StackLayout HorizontalOptions="FillAndExpand"  TranslationX="10">
+                        <Entry TextColor="#0C9185" Placeholder="Email" FontSize="Small"></Entry>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label VerticalOptions="Center" TextColor="#0C9185" FontSize="Small" Text="File Identitas" WidthRequest="100"></Label>
+                    <StackLayout HorizontalOptions="FillAndExpand"  TranslationX="10">
+                        <Entry TextColor="#0C9185"   Placeholder="File" FontSize="Small"></Entry>
+                    </StackLayout>
+                </StackLayout>
+
+
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="End" Margin="5">
+                <Button Text="Reset"/>
+                <Button Text="Simpan"/>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,19 +6,34 @@
     ;
 
 
-function PetugasDashboardServices() {
-    var services = {};
+function PetugasDashboardServices(PetugasPemasanganServices, PetugasPerubahanServices, PetugasPengaduanServices, $q) {
+    var def = $q.defer();
+
+    var services = {
+        data:{},
+        get:get
+    };
+
+    function get() {
+        setTimeout(function () {
+            services.data.Pemasangan = PetugasPemasanganServices.Pemasangan;
+            services.data.Perubahan = PetugasPerubahanServices.Perubahan;
+            services.data.Pengaduan = PetugasPengaduanServices.Pengaduan;
+            def.resolve(services.data);
+        }, 2000);
+        return def.promise;
+    }
     return services;
 }
 
 
-function PetugasPengaduanServices($http, $state,  $q) {
+function PetugasPengaduanServices($http, $state,  $q,MessageServices) {
     var def = $q.defer();
 
     var service = {
         instance: false,
         Pengaduans: [],
-        get: get, post: post, delete: deleteItem, put: EditItem
+        get: get, put: EditItem
     }
     service.get();
     return service;
@@ -33,13 +48,15 @@ function PetugasPengaduanServices($http, $state,  $q) {
                 angular.forEach(response.data, function (value, index) {
                     service.Pengaduans.push(value);
                 })
-
+                service.Pengaduan = service.Pengaduans.length;
                 service.instance = true;
                 def.resolve(response.data);
 
             }, function (response) {
-                if (response.status = 404)
-                    $state.go('login');
+                if (response.status = 401)
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
+                else
+                    MessageServices.error(response.data.Message);
                 def.reject();
             });
         } else
@@ -48,50 +65,19 @@ function PetugasPengaduanServices($http, $state,  $q) {
         return def.promise;
     }
 
-    function post(data) {
-        $http({
-            method: 'Post',
-            url: '/Api/PetugasPengaduan',
-            data: data,
-        }).then(function (response) {
-            service.Pengaduans.push(response.data);
-            def.resolve(response.data);
-        }, function (response) {
-            def.reject();
-            if (response.status = 404)
-                $state.go('login');
-
-        });
-        return def.promise;
-    }
-
-
-    function deleteItem(item) {
-        $http({
-            method: 'delete',
-            url: '/Api/PetugasPengaduan?Id=' + item.Id,
-            data: item,
-        }).then(function (response) {
-            var index = service.Pengaduans.indexOf(item, 1);
-            service.Pengaduans.splice(index, 1);
-            def.resolve(response.data);
-        }, function (response) {
-            alert("Data Tidak Terhapus");
-            def.reject();
-        });
-        return def.promise;
-    }
-
     function EditItem(item) {
         $http({
             method: 'put',
-            url: '/Api/PetugasPengaduan?Id=' + item.Id,
+            url: '/Api/PetugasPengaduan?Id=' + item.IdPengaduan,
             data: item,
         }).then(function (response) {
-            alert("Data Tersimpan");
+            MessageServices.success("Data Tersimpan");
             def.resolve(response.data);
         }, function (response) {
-            alert("Data Tidak Tersimpan");
+            if (response.status = 401)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
             def.reject();
         });
         return def.promise;
@@ -99,7 +85,7 @@ function PetugasPengaduanServices($http, $state,  $q) {
 }
 
 
-function PetugasPemasanganServices($http,$state,$q) {
+function PetugasPemasanganServices($http, $state, $q, MessageServices) {
     var def = $q.defer();
 
     var service = {
@@ -120,13 +106,16 @@ function PetugasPemasanganServices($http,$state,$q) {
                 angular.forEach(response.data, function (value, index) {
                     service.Pemasangans.push(value);
                 })
-
+                service.Pemasangan = service.Pemasangans.length;
                 service.instance = true;
                 def.resolve(response.data);
 
             }, function (response) {
-                if (response.status = 404)
-                    $state.go('login');
+                if (response.status = 401)
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
+                else
+                    MessageServices.error(response.data.Message);
+               
                 def.reject();
             });
         } else
@@ -140,19 +129,77 @@ function PetugasPemasanganServices($http,$state,$q) {
     function EditItem(item) {
         $http({
             method: 'put',
-            url: '/Api/PetugasPengaduan?Id=' + item.Id,
+            url: '/Api/PetugasPemasangan?Id=' + item.idpemasangan,
             data: item,
         }).then(function (response) {
-            alert("Data Tersimpan");
+            MessageServices.success("Data Tersimpan");
             def.resolve(response.data);
         }, function (response) {
-            alert("Data Tidak Tersimpan");
+            if (response.status = 401)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
             def.reject();
         });
         return def.promise;
     }
 }
 
-function PetugasPerubahanServices() {
+function PetugasPerubahanServices($http, $q, $state, MessageServices) {
+    var def = $q.defer();
 
+    var service = {
+        instance: false,
+        Perubahans: [],
+        get: get, put: EditItem
+    }
+    service.get();
+    return service;
+
+    function get() {
+        if (!this.instance) {
+            $http({
+                method: 'Get',
+                url: '/Api/PetugasPerubahan',
+            }).then(function (response) {
+
+                angular.forEach(response.data, function (value, index) {
+                    service.Perubahans.push(value);
+                })
+                service.Perubahan = service.Perubahans.length;
+                service.instance = true;
+                def.resolve(response.data);
+
+            }, function (response) {
+                if (response.status = 401)
+                    MessageServices.error("Anda Tidak memiliki Hak Akses");
+                else
+                    MessageServices.error(response.data.Message);
+                def.reject();
+            });
+        } else
+            def.resolve(this.Pengaduans);
+
+        return def.promise;
+    }
+
+
+
+    function EditItem(item) {
+        $http({
+            method: 'put',
+            url: '/Api/PetugasPerubahan?Id=' + item.idpemasangan,
+            data: item,
+        }).then(function (response) {
+            MessageServices.success("Data Tersimpan");
+            def.resolve(response.data);
+        }, function (response) {
+            if (response.status = 401)
+                MessageServices.error("Anda Tidak memiliki Hak Akses");
+            else
+                MessageServices.error(response.data.Message);
+            def.reject();
+        });
+        return def.promise;
+    }
 }

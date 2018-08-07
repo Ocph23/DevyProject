@@ -35,8 +35,11 @@ namespace AdminApps.Api.Admin
         }
 
         // PUT: api/AdminPengaduan/5
-        public void Put(int id, [FromBody]string value)
+        public async Task<IHttpActionResult> Put(int id, [FromBody]PengaduanModel value)
         {
+            var result = await domain.SaveChange(value);
+            return Ok(result);
+
         }
 
         // DELETE: api/AdminPengaduan/5

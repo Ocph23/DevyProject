@@ -1,10 +1,21 @@
-﻿
-<div class="row">
+﻿<div class="row">
     <div class="col-md-12">
         <div class="card card-plain">
             <div class="card-header card-header-primary">
                 <h4 class="card-title mt-0">DAFTAR PEMASANGAN</h4>
-                <p class="card-category"></p>
+                <div class="row justify-content-between hidden-print">
+                    <div class="col-4">
+                        <select style="width:150px" ng-model="data.Status" class="form-control success">
+                            <option value="">-- Filter --</option>
+                            <option value="Baru">Baru</option>
+                            <option value="Proses">Proses</option>
+                            <option value="Selesai">Selesai</option>
+                        </select>
+                    </div>
+                    <div class="col-1 align-self-end">
+                        <button class="hidden-print btn btn-warning" onclick="window.print()"><i class="fa fa-print"></i></button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -15,7 +26,22 @@
                                     NO
                                 </th>
                                 <th>
+                                    ID Pemasangan
+                                </th>
+                                <th>
                                     ID Pelanggan
+                                </th>
+                                <th>
+                                    Nama Pelanggan
+                                </th>
+                                <th>
+                                    Peruntukan
+                                </th>
+                                <th>
+                                    Daya
+                                </th>
+                                <th>
+                                    No Gardu
                                 </th>
 
                                 <th>
@@ -23,31 +49,56 @@
                                 </th>
 
                                 <th>
-                                    JenisPemasangan
+                                    Jenis
+                                </th>
+
+                                <th>
+                                    Status
                                 </th>
                                 <th>
-                                    Daya
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in Pemasangans" ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button"  data-toggle="modal">
-                                <td>
+                            <tr ng-repeat="item in Pemasangans  | filter:{Status:data.Status}">
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
                                     {{$index+1}}
                                 </td>
-                                <td>
-                                   {{("0000000"+item.IdPelanggan).slice(-7)}}
-                                  
+
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
+                                    PS{{("0000000"+model.Pelanggan.idpemasangan).slice(-7)}}
                                 </td>
-                                <th>
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
+                                    PL{{("0000000"+item.IdPelanggan).slice(-7)}}
+                                </td>
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
+                                    {{item.Pelanggan.Nama}}
+                                </td>
+
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
+                                    {{item.Peruntukan}}
+                                </td>
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
+                                    {{item.Daya}} KWH
+                                </td>
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
+                                    {{item.NoGardu}}
+                                </td>
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
                                     {{item.JenisTarif}}
-                                </th>
-                                <th>
+                                </td>
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
                                     {{item.JenisPemasangan}}
-                                </th>
-                                <th>
-                                    {{item.Daya}}
-                                </th>
+                                </td>
+                                <td ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
+                                    {{item.Status}}
+                                </td>
+                                <td ng-if="item.Status==='None'">
+                                    <a ng-click="EditItem(item)" href="#modal-container-42722" role="button" data-toggle="modal"><i class="fas fa-users text-warning fa-2x "></i></a>
+                                </td>
+                                <td ng-if="item.Status!='Selesai'">
+                                    <a ng-click="Complete(item)"><i class="fa fa-check-square fa-2x"></i></a>
+                                </td>
 
                             </tr>
 
@@ -60,73 +111,95 @@
 </div>
 
 <div class="container-fluid">
-    <style>
-        .label-title{
-            width:100px;
-            vertical-align:top;
-        }
-    </style>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <a id="modal-42722" >Launch demo modal</a>
-            <div class="modal fade" id="modal-container-42722" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">
-                                <i class="fa fa-user"> Detail Pelanggan</i>
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <label class="label-title">Nama</label>
-                                        <input readonly ng-model="Item.Pelanggan.Nama"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="label-title">Jenis Kelamin</label>
-                                        <input readonly ng-model="Item.Pelanggan.JK" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="label-title">Alamat</label>
-                                        <textarea readonly ng-model="Item.Pelanggan.Alamat"></textarea>
-                                    </div> 
-                                    
-                                    <div class="form-group">
-                                        <label class="label-title">Nomor Kontak</label>
-                                        <input readonly ng-model="Item.Pelanggan.NoIdentitas" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="label-title">Email</label>
-                                        <input readonly ng-model="Item.Pelanggan.Email" />
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <img style="width:100px" src="../../../assets/img/blue-user-icon-32.jpg" />
-                                </div>
-                            </div>
-                       </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info" data-dismiss="modal">
-                                Close
-                            </button>
-                        </div>
-                    </div>
-
+    <div class="modal fade" id="modal-container-42722" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-lg modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-user"> Detail Pelanggan</i>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
 
+                <div class="modal-body" style="margin:20px">
+                    <div class="card-body col col-md-12 align-self-center" style="margin-top:20px">
+                        <form>
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <div file-canvas>
+                                        <img style="margin:5px; height:130px; width:100px;" data-ng-src="data:image/png;base64,{{Item.Pelanggan.Foto}}" onerror="this.src=''" alt="No Image" />
+                                    </div>
+                                </div>
+                                <div class="card-body row justify-content-md-center ">
+
+                                    <div class="col-md-auto">
+                                        <div class="form-group">
+                                            <label class="label-title">ID PELANGGAN</label>
+                                            <div style="font-size:20px">
+                                                PL{{("0000000"+Item.Pelanggan.IdPelanggan).slice(-7)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label-title">Nama</label>
+                                            <div style="font-size:20px">
+                                                {{Item.Pelanggan.Nama}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="label-title">Jenis Kelamin</label>
+                                            <div style="font-size:20px">
+                                                {{Item.Pelanggan.JK}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="label-title">Alamat</label>
+                                            <div style="font-size:20px">
+                                                {{Item.Pelanggan.Alamat}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label-title">NoIdentitas</label>
+                                            <div style="font-size:20px">
+                                                {{Item.Pelanggan.NoIdentitas}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label-title">Kontak</label>
+                                            <div style="font-size:20px">
+                                                {{Item.Pelanggan.NoKontak}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label-title">Email</label>
+                                            <div style="font-size:20px">
+                                                {{Item.Pelanggan.Email}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" onclick="window.print()" class="btn btn-default">
+                        Print
+                    </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
             </div>
 
         </div>
+
     </div>
+    
 </div>

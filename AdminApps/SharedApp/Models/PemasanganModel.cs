@@ -108,6 +108,16 @@ namespace SharedApp.Models
             }
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Status Status
+        {
+            get { return _status; }
+            set
+            {
+
+                SetProperty(ref _status, value);
+            }
+        }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public JenisPemasangan JenisPemasangan
@@ -155,7 +165,6 @@ namespace SharedApp.Models
         private int _idpelanggan;
         private JenisPemasangan _jenisPemangsangan;
         private int? _idpetugas;
-
-       
+        private Status _status;
     }
 }

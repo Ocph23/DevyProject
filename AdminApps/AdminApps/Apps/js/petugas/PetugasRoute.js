@@ -1,6 +1,6 @@
 ﻿angular.module("petugas.routes", [])
     .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.when('/', '/petugas/dashboard');
+        $urlRouterProvider.when('/petugas', '/petugas/dashboard');
         $stateProvider
             .state('petugas', {
                 abstract: true,

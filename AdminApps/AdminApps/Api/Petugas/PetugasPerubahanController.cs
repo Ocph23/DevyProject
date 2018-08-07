@@ -21,7 +21,7 @@ namespace AdminApps.Api.Petugas
             {
                 var profile = await User.GetPetugas();
                 var results = await domain.Get();
-                return Ok(results.Where(O => O.IdPelanggan == profile.idpetugas && O.JenisPemasangan!= SharedApp.JenisPemasangan.Baru).ToList());
+                return Ok(results.Where(O => O.IdPetugas == profile.idpetugas && O.JenisPemasangan!= SharedApp.JenisPemasangan.Baru).ToList());
             }
             catch (Exception ex)
             {

@@ -2,20 +2,46 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:AndroidApp.Views"
-            x:Class="AndroidApp.Views.MainPage">
+                  xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+                  x:Class="AndroidApp.Views.MainPage">
     <MasterDetailPage.Master>
         <ContentPage Title="Menu" BackgroundColor="Accent" Opacity="0.9">
             <Grid BackgroundColor="Transparent">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Grid>
-                    <Image Source="bg.png" Aspect="AspectFill" />
-                    <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Image  Source="xamarin_logo.png" Aspect="AspectFill" WidthRequest="85" HeightRequest="85" />
-                        <Label Text="Adam Pedley" TextColor="White" FontSize="Large" />
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="70*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <controls:CircleImage BackgroundColor="White" BorderColor="Yellow" BorderThickness="1" Source="Logo_PLN.png" Aspect="AspectFill">
+                            <controls:CircleImage.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">55</On>
+                                    <On Platform="WinPhone">75</On>
+                                </OnPlatform>
+                            </controls:CircleImage.WidthRequest>
+                            <controls:CircleImage.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">55</On>
+                                    <On Platform="WinPhone">75</On>
+                                </OnPlatform>
+                            </controls:CircleImage.HeightRequest>
+                            <controls:CircleImage.GestureRecognizers>
+                                <ClickGestureRecognizer x:Name="profileGesture" Clicked="profileGesture_Clicked"></ClickGestureRecognizer>
+                            </controls:CircleImage.GestureRecognizers>
+                        </controls:CircleImage>
+                       
                     </StackLayout>
+                    <StackLayout Grid.Column="1"  VerticalOptions="CenterAndExpand">
+                        <Label Text="Hi!"  HorizontalOptions="CenterAndExpand" Font="Tahoma" TextColor="White" FontSize="Large" />
+                        <Label Text="Yaquin"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="Large" />
+                    </StackLayout>
+                    
                 </Grid>
                 <StackLayout Margin="0" Grid.Row="1" Spacing="15">
                     <ListView x:Name="navigationDrawerList" RowHeight="60" SeparatorVisibility="None" BackgroundColor="White" ItemSelected="OnMenuItemSelected">
@@ -24,13 +50,16 @@
                                 <ViewCell>
                                     <!-- Main design for our menu items -->
                                     <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="10" Spacing="15">
-                                        <Image Source="{Binding Icon}" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" />
-                                        <Label Text="{Binding Title}" FontSize="Medium" VerticalOptions="Center" TextColor="Black" />
+                                        <Image Source="{Binding Icon}" WidthRequest="25" HeightRequest="25" VerticalOptions="Center" />
+                                        <Label Text="{Binding Title}" FontSize="Small" VerticalOptions="Center" TextColor="#0C9185" />
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                </StackLayout>
+                <StackLayout Grid.Row="2" HorizontalOptions="CenterAndExpand">
+                    <Label Text="@2018" TextColor="White"/>
                 </StackLayout>
             </Grid>
         </ContentPage>

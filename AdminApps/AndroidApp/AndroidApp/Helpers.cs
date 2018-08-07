@@ -12,14 +12,14 @@ namespace AndroidApp
 
         public static async Task<AuthenticationToken> GetToken()
         {
-            var app = ((App)App.Current);
+            var app = ((App)Application.Current);
             return await Task.FromResult(await app.GetToken());
         }
 
 
         public static Task<App> GetBaseApp()
         {
-            var app = ((App)App.Current);
+            var app = ((App)Application.Current);
             return Task.FromResult(app);
         }
 

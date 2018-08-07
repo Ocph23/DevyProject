@@ -1,4 +1,5 @@
-﻿using SharedApp.Models;
+﻿using AdminLib.DTO;
+using SharedApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace AdminLib.Models
     public class Pengaduan : DTO.pengaduan, IBaseModel<Pengaduan>, IConvertModel<PengaduanModel>
     {
         public Petugas Petugas { get; set; }
+        public Pelanggan Pelanggan { get; set; }
 
         public PengaduanModel ConvertModel()
         {
@@ -42,19 +44,21 @@ namespace AdminLib.Models
             {
                 try
                 {
-                    var result = from a in db.Pengaduan.Select()
+                    var result = (from a in db.Pengaduan.Select()
+                                  join b in db.Pelanggan.Select() on a.IdPelanggan equals b.IdPelanggan
                                  
                                  select new Pengaduan
                                  {
-                                     IdPengaduan = a.IdPengaduan, IdPelanggan=a.IdPelanggan,
+                                     IdPelanggan = a.IdPelanggan, Pelanggan=OcphMapper.Mapper.Map<Pelanggan>(b),
+                                     IdPengaduan = a.IdPengaduan, 
                                      IdPetugas = a.IdPetugas,
                                      Pengaduan = a.Pengaduan,
                                      Status = a.Status,
                                      WaktuLapor = a.WaktuLapor,
                                      WaktuSelesai = a.WaktuSelesai
                                     
-                                 };
-                    foreach(Pengaduan item in result.ToList())
+                                 }).ToList();
+                    foreach(Pengaduan item in result)
                     {
                         if (item.IdPetugas != null)
                         {
@@ -66,7 +70,7 @@ namespace AdminLib.Models
 
 
 
-                    return Task.FromResult(result.ToList());
+                    return Task.FromResult(result);
 
                 }
                 catch (Exception ex)

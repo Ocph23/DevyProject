@@ -10,8 +10,10 @@ using System.Web.Http;
 using SharedApp;
 using SharedApp.Models;
 using System.Web;
+using Newtonsoft.Json;
 using Microsoft.AspNet.Identity.Owin;
 using AdminApps.Models;
+
 
 namespace AdminApps.Api.Admin
 {

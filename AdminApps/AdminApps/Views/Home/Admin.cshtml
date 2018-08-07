@@ -1,19 +1,31 @@
-﻿<div data-ng-include="'/Apps/templates/admin/leftnav.html'">
-</div>
-<div data-ng-include="'/Apps/templates/admin/topnav.html'">
-</div>
+﻿<div class="wrapper">
+    <div data-ng-include="'/Apps/templates/admin/leftnav.html'">
+    </div>
+    <div data-ng-include="'/Apps/templates/admin/topnav.html'">
+    </div>
 
-<div class="main-panel">
-    <!-- Navbar -->
-    <!-- End Navbar -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="ui-base">
-                <div ui-view />
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row justify-content-between show-print">
+                    <div class="col-1">
+                        <img style="height:100px;width:75px" src="~/assets/img/Logo_PLN.png" />
+                    </div>
+                    <div class="col-10">
+                        <h3>APLIKASI PELAYANAN LISTRIK PRABAYAR</h3>
+                        <h4>PT. PLN RAYON JAYAPURA</h4>
+                    </div>
+                </div>
+
+                <div class="ui-base">
+                    <div ui-view />
+                </div>
+
             </div>
 
         </div>
 
     </div>
-
 </div>
+
+

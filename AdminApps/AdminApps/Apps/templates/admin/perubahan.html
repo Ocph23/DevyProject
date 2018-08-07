@@ -1,1 +1,170 @@
-﻿PERUBAHAN
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="card card-plain">
+            <div class="card-header card-header-info">
+                <h4 class="card-title mt-0">DAFTAR PERUBAHAN</h4>
+                <div class="row justify-content-between hidden-print">
+                    <div class="col-4">
+                        <select style="width:150px" ng-model="data.Status" class="form-control success">
+                            <option value="">-- Filter --</option>
+                            <option value="Baru">Baru</option>
+                            <option value="Proses">Proses</option>
+                            <option value="Selesai">Selesai</option>
+                        </select>
+                    </div>
+                    <div class="col-1 align-self-end">
+                        <button class="btn btn-warning" onclick="window.print()"><i class="fa fa-print"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="">
+                            <tr>
+                                <th>
+                                    NO
+                                </th>
+                                <th>
+                                    ID Pelanggan
+                                </th>
+                                <th>
+                                    Nama Pelanggan
+                                </th>
+                                <th>
+                                    Peruntukan
+                                </th>
+                                <th>
+                                    Daya
+                                </th>
+                                <th>
+                                    No Gardu
+                                </th>
+
+                                <th>
+                                    JenisTarif
+                                </th>
+
+                                <th>
+                                    Jenis
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in Perubahans | filter:{Status:data.Status}">
+                                <td>
+                                    {{$index+1}}
+                                </td>
+                                <td>
+                                    PL{{("0000000"+item.IdPelanggan).slice(-7)}}
+                                </td>
+                                <td>
+                                    {{item.Pelanggan.Nama}}
+                                </td>
+
+                                <td>
+                                    {{item.Peruntukan}}
+                                </td>
+                                <td>
+                                    {{item.Daya}} KWH
+                                </td>
+                                <td>
+                                    {{item.NoGardu}}
+                                </td>
+                                <td>
+                                    {{item.JenisTarif}}
+                                </td>
+                                <td>
+                                    {{item.JenisPemasangan}}
+                                </td>
+                                <td>
+                                    {{item.Status}}
+                                </td>
+                                <td ng-if="item.Status==='None'">
+                                    <a ng-click="EditItem(item)" href="#modal-container-42722" role="button" data-toggle="modal"><i class="fas fa-users text-warning fa-2x "></i></a>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modal-container-42722" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-md modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-user"> Pilih Petugas</i>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form role="form" ng-submit="Save(model)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>
+                            ID Pengaduan
+                        </label>
+                        <div> PL{{("0000000"+model.Pelanggan.IdPelanggan).slice(-7)}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Nama
+                        </label>
+                        <div> {{model.Pelanggan.Nama}}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            ID Pemasangan
+                        </label>
+                        <div> PS{{("0000000"+model.idpemasangan).slice(-7)}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Peruntukan
+                        </label>
+                        <div>{{model.Peruntukan}}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            No Gardu
+                        </label>
+                        <div><input class="form-control" ng-model="model.NoGardu" /></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Petugas
+                        </label>
+                        <select class="form-control" ng-options="item as item.Nama for item in Petugas track by item.idpetugas" ng-model="model.Petugas"></select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input class="btn btn-success" type="submit" value="Save" />
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

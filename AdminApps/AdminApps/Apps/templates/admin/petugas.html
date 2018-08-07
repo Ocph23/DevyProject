@@ -1,12 +1,14 @@
-﻿<div class="row">
+﻿
+
+<div class="row">
     <div class="col-md-12">
         <div class="card card-plain">
-            <div class="card-header card-header-primary">
+            <div class="card-header card-header-info">
                 <h4 class="card-title mt-0">DAFTAR PETUGAS</h4>
                 <div class="clearfix" />
                 <div class="pull-right">
-                    <a href="#modal-container-42722" role="button" data-toggle="modal" class="btn btn-success"><i class="fa fa-plus-circle"></i></a>
-                    <button class="btn btn-warning"><i class="fa fa-print"></i></button>
+                    <a href="#modal-container-42722" role="button" data-toggle="modal" class="btn btn-success hidden-print"><i class="fa fa-plus-circle"></i></a>
+                    <button class="hidden-print btn btn-warning" onclick="window.print()"><i class="fa fa-print"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -60,7 +62,7 @@
                                 <th>
                                     {{item.Email}}
                                 </th>
-                                <th>
+                                <th class="hidden-print">
                                     <a ng-click="EditItem(item)" href="#modal-container-42722" role="button" data-toggle="modal" ><i class="fas fa-pen text-warning fa-2x "></i></a>
                                     <a ng-click="DeleteItem(item)" href="" ><i class="fas fa-trash text-danger fa-2x" ></i></a>
                                 </th>
@@ -128,7 +130,7 @@
 
                         <div class="modal-footer">
                             <input class="btn btn-default" value="Reset" type="button" ng-click="model={}" />
-                            <input class="btn btn-success" type="submit" value="Save" />
+                            <input class="btn btn-success" data-dismiss="modal" type="submit" value="Save" />
 
                         </div>
 

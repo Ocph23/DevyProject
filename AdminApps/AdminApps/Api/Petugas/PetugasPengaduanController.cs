@@ -48,6 +48,7 @@ namespace AdminApps.Api.User
         {
             try
             {
+                value.WaktuSelesai = DateTime.Now;
                 return Ok(await domain.SaveChange(value));
             }
             catch (Exception ex)

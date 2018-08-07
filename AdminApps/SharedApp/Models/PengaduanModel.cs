@@ -58,7 +58,7 @@ namespace SharedApp.Models
         }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public PengaduanStatus Status
+        public Status Status
         {
             get { return _status; }
             set
@@ -78,13 +78,14 @@ namespace SharedApp.Models
             }
         }
 
+        public PelangganModel Pelanggan { get; set; }
         public PetugasModel Petugas { get; set; }
 
         private int _idpengaduan;
         private string _pengaduan;
         private DateTime _waktulapor;
         private DateTime _waktuselesai;
-        private PengaduanStatus _status;
+        private Status _status;
         private int? _idpetugas;
         private int _idpelanggan;
 

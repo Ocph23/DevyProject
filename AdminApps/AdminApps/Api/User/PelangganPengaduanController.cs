@@ -43,6 +43,7 @@ namespace AdminApps.Api.User
         {
             try
             {
+                value.WaktuLapor = DateTime.Now;
                 var pel = await User.PelangganProfile();
                 value.IdPelanggan = pel.IdPelanggan;
                 return Ok(await domain.SaveChange(value));

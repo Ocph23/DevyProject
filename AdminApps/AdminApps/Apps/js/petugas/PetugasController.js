@@ -15,6 +15,15 @@ function PetugasPerubahanController($scope, PetugasPerubahanServices) {
         $scope.Item = item;
     }
 
+    $scope.EditItem = function (item) {
+        $scope.model = item;
+    }
+    $scope.Complete = function (item) {
+        item.Status = "Selesai";
+        PetugasPerubahanServices.put(item);
+    }
+
+
 }
 
 function PetugasPemasanganController($scope, PetugasPemasanganServices) {
@@ -27,6 +36,11 @@ function PetugasPemasanganController($scope, PetugasPemasanganServices) {
     $scope.EditItem = function (item) {
         $scope.model = item;
     }
+    $scope.Complete = function (item) {
+        item.Status = "Selesai";
+        item.WaktuSelesai = new Date();
+        PetugasPemasanganServices.put(item);
+    }
 
 }
 
@@ -37,14 +51,49 @@ function PetugasPengaduanController($scope, PetugasPengaduanServices) {
         $scope.Item = item;
     }
 
-   
+    $scope.Complete = function (item) {
+        item.Status = "Selesai";
+        item.WaktuSelesai = new Date();
+        PetugasPengaduanServices.put(item);
+    }
    
 
 }
 
-function PetugasDashboardController() { }
+function PetugasDashboardController($scope, PetugasDashboardServices) {
+    $scope.model = PetugasDashboardServices.get().then(function (response) {
+        $scope.model= response;
+    });  
 
-fun
+}
+
+function PetugasProfileController($scope, UserServices,AdminPetugasServices) {
+    UserServices.get().then(function (response) {
+        $scope.Profile = response;
+    });
+    $scope.gambar;
+    $scope.Save = function (model) {
+        getBase64(model);
+       
+    }
+
+    function getBase64(model) {
+        var reader = new FileReader();
+        reader.readAsDataURL(model.Photo);
+        reader.onload = function () {
+            var gambar = reader.result.split(',');
+            model.Foto = gambar[1];
+            AdminPetugasServices.put(model);
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
+
+
+}
+
+
 
 function LogoutController($http, $state, $location,$window) {
     var landingUrl = "http://" + $window.location.host + "/home";

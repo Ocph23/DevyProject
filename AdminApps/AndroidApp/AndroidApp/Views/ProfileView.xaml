@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="AndroidApp.Views.ProfileView">
+    <ContentPage.Content>
+        <Grid BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="50*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout  Grid.Row="0" BackgroundColor="#0C9185">
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <controls:CircleImage  BackgroundColor="White" BorderColor="Yellow" 
+                                      BorderThickness="1" Source="awesomeuser.png" 
+                                      Aspect="AspectFill">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">100</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">100</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                        <controls:CircleImage.GestureRecognizers>
+                            <ClickGestureRecognizer x:Name="profileGesture" Clicked="profileGesture_Clicked"></ClickGestureRecognizer>
+                        </controls:CircleImage.GestureRecognizers>
+                    </controls:CircleImage>
+
+                </StackLayout>
+            </StackLayout>
+            
+
+            <StackLayout Margin="20" Grid.Row="1" Spacing="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="65*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout>
+                        <Label  Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <Label  Text="Nama" TextColor="#0C9185"/>
+                        <Label  Text="Jenis Kelamin" TextColor="#0C9185"/>
+                        <Label  Text="Alamat" TextColor="#0C9185"/>
+                        <Label  Text="No Kontak" TextColor="#0C9185"/>
+                        <Label  Text="Email" TextColor="#0C9185"/>
+                        <Label  Text="Identitas" TextColor="#0C9185"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1">
+                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <StackLayout Grid.Row="2" HorizontalOptions="CenterAndExpand">
+                <Label Text="@2018" TextColor="White"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

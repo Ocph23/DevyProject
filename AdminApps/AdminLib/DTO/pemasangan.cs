@@ -127,6 +127,17 @@ namespace AdminLib.DTO
             set {SetProperty(ref _jenisPemangsangan ,value); }
         }
 
+        [DbColumn("Status")]
+        public Status Status
+        {
+            get { return _status; }
+            set
+            {
+
+                SetProperty(ref _status, value);
+            }
+        }
+
 
         private JenisPemasangan _jenisPemangsangan;
         private int  _idpemasangan;
@@ -140,6 +151,7 @@ namespace AdminLib.DTO
            private int  _statusubah;
            private int  _idpelanggan;
         private int? _idpetugas;
+        private Status _status;
     }
 }
 

@@ -209,11 +209,13 @@
     <Compile Include="Api\Admin\AdminPelangganController.cs" />
     <Compile Include="Api\Admin\AdminPemasanganController.cs" />
     <Compile Include="Api\Admin\AdminPengaduanController.cs" />
+    <Compile Include="Api\Admin\AdminPerubahanController.cs" />
     <Compile Include="Api\Admin\AdminPetugasController.cs" />
     <Compile Include="Api\Petugas\PetugasPerubahanController.cs" />
     <Compile Include="Api\Petugas\PetugasPemasanganController.cs" />
     <Compile Include="Api\Petugas\PetugasPengaduanController.cs" />
     <Compile Include="Api\Petugas\PetugasDashboardController.cs" />
+    <Compile Include="Api\UserProfileController.cs" />
     <Compile Include="Api\User\PelangganPemasanganController.cs" />
     <Compile Include="Api\User\PelangganPengaduanController.cs" />
     <Compile Include="Api\User\UserAccountController.cs" />
@@ -247,6 +249,7 @@
     <Content Include="Apps\templates\admin\pengaduan.html" />
     <Content Include="Apps\templates\admin\perubahan.html" />
     <Content Include="Apps\templates\admin\petugas.html" />
+    <Content Include="Apps\templates\admin\profile.html" />
     <Content Include="Apps\templates\admin\topnav.html" />
     <Content Include="Apps\templates\admin\users.html" />
     <Content Include="Apps\templates\base.html" />
@@ -1900,6 +1903,7 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="bundleconfig.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />

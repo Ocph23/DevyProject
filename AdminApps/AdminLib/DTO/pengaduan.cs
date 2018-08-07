@@ -66,7 +66,7 @@ namespace AdminLib.DTO
           } 
 
           [DbColumn("Status")] 
-          public PengaduanStatus Status 
+          public Status Status 
           { 
                get{return _status;} 
                set{ 
@@ -89,7 +89,7 @@ namespace AdminLib.DTO
            private string  _pengaduan;
            private DateTime  _waktulapor;
            private DateTime  _waktuselesai;
-           private PengaduanStatus  _status;
+           private Status  _status;
            private int?  _idpetugas;
         private int _idpelanggan;
     }
