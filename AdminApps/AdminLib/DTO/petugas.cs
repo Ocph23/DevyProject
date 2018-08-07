@@ -80,16 +80,26 @@ namespace AdminLib.DTO
 
                     SetProperty(ref _userid, value);
                      }
-          } 
+          }
+        [DbColumn("Foto")]
+        public byte[] Foto
+        {
+            get { return _Foto; }
+            set
+            {
 
-          private int  _idpetugas;
+                SetProperty(ref _Foto, value);
+            }
+        }
+        private int  _idpetugas;
            private string  _nama;
            private Gender  _jk;
            private string  _alamat;
            private string  _nokontak;
            private string  _email;
            private string  _userid;
-      }
+        private byte[] _Foto;
+    }
 }
 
 

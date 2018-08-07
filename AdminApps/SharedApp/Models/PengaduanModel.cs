@@ -1,14 +1,10 @@
-﻿using AdminLib;
-using AdminLib.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SharedApp.Models
 {
-  public  class PengaduanModel:BaseNotify, IConvertModel<Pengaduan>
+    public  class PengaduanModel:BaseNotify
     {
         public int IdPengaduan
         {
@@ -82,7 +78,7 @@ namespace SharedApp.Models
             }
         }
 
-        public Petugas Petugas { get; set; }
+        public PetugasModel Petugas { get; set; }
 
         private int _idpengaduan;
         private string _pengaduan;
@@ -92,10 +88,7 @@ namespace SharedApp.Models
         private int? _idpetugas;
         private int _idpelanggan;
 
-        public Pengaduan ConvertModel()
-        {
-            return OcphMapper.Mapper.Map<Pengaduan>(this);
-        }
+       
     }
 }
 

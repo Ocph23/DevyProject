@@ -8,5 +8,7 @@ namespace AdminLib
 {
     public class Class1
     {
+
+        //Hai
     }
 }

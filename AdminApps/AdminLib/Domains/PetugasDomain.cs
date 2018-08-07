@@ -45,7 +45,7 @@ namespace AdminLib.Domains
 
         public async Task<PetugasModel> SaveChange(PetugasModel item)
         {
-            var dto = item.ConvertModel();
+            var dto = OcphMapper.Mapper.Map<Petugas>(item);
             var model = await dto.SaveChange();
             return model.ConvertModel();
         }

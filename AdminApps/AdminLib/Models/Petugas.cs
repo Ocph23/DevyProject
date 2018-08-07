@@ -23,8 +23,8 @@ namespace AdminLib.Models
 
                 using (var db = new OcphDbContext())
                 {
-                    var result = db.Petugas.Where(O => O.idpetugas == this.idpetugas).FirstOrDefault();
-                    if (result != null)
+                    var result = db.Petugas.Delete(O => O.idpetugas == this.idpetugas);
+                    if (result)
                         return Task.FromResult(true);
                     else
                         throw new SystemException("Data Tidak Ditemukan");

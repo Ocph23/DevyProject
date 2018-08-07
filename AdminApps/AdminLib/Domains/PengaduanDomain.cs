@@ -38,7 +38,7 @@ namespace AdminLib.Domains
         public async Task<PengaduanModel> SaveChange(PengaduanModel item)
         {
 
-            var model = item.ConvertModel();
+            var model = OcphMapper.Mapper.Map<Pengaduan>(item);
             var result = await model.SaveChange();
             return result.ConvertModel();
         }

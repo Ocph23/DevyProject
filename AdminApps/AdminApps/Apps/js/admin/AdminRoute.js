@@ -45,11 +45,10 @@ angular.module('admin.routes', [])
                 templateUrl: '/apps/templates/admin/perubahan.html',
                 controller: 'PerubahanController'
             })
-            .state('admin-users', {
-                url: '/users',
+            .state('logout', {
+                url: '/logout',
                 parent: 'admin',
-                templateUrl: '/apps/templates/admin/users.html',
-                controller: 'UsersController'
+                controller: 'LogoutController'
             })
 
 

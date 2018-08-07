@@ -1,4 +1,5 @@
 ﻿angular.module("admin.services", [])
+    .factory("AdminDashboard",AdminDashboard)
     .factory("AdminPelangganServices", AdminPelangganServices)
     .factory("AdminPengaduanServices", AdminPengaduanServices)
     .factory("AdminPemasanganServices", AdminPemasanganServices)
@@ -6,6 +7,40 @@
     .factory("AdminPetugasServices", AdminPetugasServices)
     ;
 
+
+function AdminDashboard($http, $q) {
+    var def = $q.defer();
+    var service = {
+        instance: false,
+        Data:{},
+        get: get
+    };
+
+    function get() {
+        if (!this.instance) {
+            $http({
+                method: 'Get',
+                url: '/Api/AdminDashboard',
+            }).then(function (response) {
+                service.Data = response.data;
+
+                service.instance = true;
+                def.resolve(response.data);
+
+            }, function (response) {
+                if (response.status = 404)
+                    alert("Anda Tidak memiliki Hak Akses");
+                def.reject();
+            });
+        } else
+            def.resolve(this.Data);
+
+        return def.promise;
+    }
+
+    service.get();
+    return service;
+}
 
 function AdminPelangganServices($http, $q) {
     var def = $q.defer();
@@ -190,7 +225,7 @@ function AdminPetugasServices($http,$q) {
     var service = {
         instance: false,
         Petugas: [],
-        get: get, verify: verify
+        get: get, verify: verify, post: post, put: put, delete: deleteItem
     };
 
     function get() {
@@ -217,6 +252,67 @@ function AdminPetugasServices($http,$q) {
 
         return def.promise;
     }
+
+    function post(model) {
+        $http({
+            method: 'post',
+            url: '/Api/AdminPetugas',data:model
+        }).then(function (response) {
+            service.Petugas.push(response.data);
+            alert("Data Tersimpan");
+            service.instance = true;
+            def.resolve(response.data);
+
+        }, function (response) {
+            alert(response.data);
+            def.reject();
+            });
+
+
+        return def.promise;
+    }
+
+    function put(model) {
+        $http({
+            method: 'put',
+            url: '/Api/AdminPetugas?Id='+model.idpetugas, data: model
+        }).then(function (response) {
+            service.Petugas.push(response.data);
+            alert("Data Tersimpan");
+            service.instance = true;
+            def.resolve(response.data);
+
+        }, function (response) {
+
+            alert(response.data.Message);
+            def.reject();
+        });
+
+
+        return def.promise;
+    }
+
+    function deleteItem(model) {
+        $http({
+            method: 'delete',
+            url: '/Api/AdminPetugas?Id=' + model.idpetugas
+        }).then(function (response) {
+            var index = service.Petugas.indexOf(model, 1);
+            service.Petugas.splice(index, 1);
+            alert("Data Terhapus");
+            service.instance = true;
+            def.resolve(response.data);
+
+        }, function (response) {
+
+            alert(response.data.Message);
+            def.reject();
+        });
+
+
+        return def.promise;
+    }
+
 
 
     function verify() {

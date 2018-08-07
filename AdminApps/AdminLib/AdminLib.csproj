@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="BaseMapper.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Domains\DashboarDomain.cs" />
     <Compile Include="Domains\IBaseDomain.cs" />
     <Compile Include="Domains\PelangganDomain.cs" />
     <Compile Include="Domains\PemasanganDomain.cs" />

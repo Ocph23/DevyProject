@@ -11,7 +11,7 @@
                         <thead class="">
                             <tr>
                                 <th>
-                                  NO
+                                    NO
                                 </th>
                                 <th>
                                     ID PELANGGAN
@@ -31,6 +31,9 @@
                                 <th>
                                     Email
                                 </th>
+                                <th>
+                                    
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +42,7 @@
                                     {{$index+1}}
                                 </td>
                                 <th>
-                                   {{item.IdPelanggan}}
+                                    PL{{("0000000"+item.IdPelanggan).slice(-7)}}
                                 </th>
                                 <th>
                                     {{item.JK}}
@@ -54,7 +57,10 @@
                                     {{item.NoKontak}}
                                 </th>
                                 <th>
-                                   {{item.Email}}
+                                    {{item.Email}}
+                                </th>
+                                <th>
+                                    {{}}
                                 </th>
                             </tr>
                           

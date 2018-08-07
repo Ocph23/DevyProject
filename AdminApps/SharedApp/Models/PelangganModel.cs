@@ -1,32 +1,14 @@
-﻿using AdminLib.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SharedApp.Models
 {
-    public class PelangganModel : BaseNotify, IConvertModel<Pelanggan>
+    public class PelangganModel : BaseNotify
     {
-        public Pelanggan ConvertModel()
-        {
-            return new Pelanggan
-            {
-                Alamat = Alamat,
-                Email = Email,
-                IdPelanggan = IdPelanggan,
-                IdUser = IdUser,
-                JK = JK,
-                Nama = Nama,
-                NoIdentitas = NoIdentitas,
-                NoKontak = NoKontak,
-                ScanIdentitas = ScanIdentitas
-            };
-        }
-
-
+      
         public int IdPelanggan
         {
             get { return _idpelanggan; }
@@ -78,7 +60,7 @@ namespace SharedApp.Models
             }
         }
 
-        public string ScanIdentitas
+        public byte[] ScanIdentitas
         {
             get { return _scanidentitas; }
             set
@@ -97,9 +79,8 @@ namespace SharedApp.Models
                 SetProperty(ref _nokontak, value);
             }
         }
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+      
+
         public string Email
         {
             get { return _email; }
@@ -120,18 +101,37 @@ namespace SharedApp.Models
             }
         }
 
-      
+        public byte[] Foto
+        {
+            get { return _Foto; }
+            set
+            {
+
+                SetProperty(ref _Foto, value);
+            }
+        }
+
+        public bool Verification
+        {
+            get { return _Verification; }
+            set
+            {
+
+                SetProperty(ref _Verification, value);
+            }
+        }
 
         private int _idpelanggan;
         private string _nama;
         private Gender _jk;
         private string _alamat;
         private string _noidentitas;
-        private string _scanidentitas;
+        private byte[] _scanidentitas;
         private string _nokontak;
         private string _email;
         private string _iduser;
-       
+        private byte[] _Foto;
+        private bool _Verification;
     }
 }
 

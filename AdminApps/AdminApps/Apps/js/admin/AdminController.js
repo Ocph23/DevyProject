@@ -5,7 +5,7 @@
     .controller('PelangganController', PelangganController)
     .controller('PengaduanController', PengaduanController)
     .controller('PemasanganController', PemasanganController)
-    .controller('UsersController', UsersController)
+    .controller('LogoutController', LogoutController)
     ;
 
 
@@ -16,13 +16,34 @@ function UserController() {
 
 
 
-function DashboardController() {
+function DashboardController($scope, AdminDashboard) {
+    AdminDashboard.get().then(function (response) {
 
+        $scope.Data = response;
+    });
 }
 
 
 function PetugasController($scope, AdminPetugasServices) {
+    $scope.model={};
     $scope.Petugas = AdminPetugasServices.Petugas;
+
+    $scope.Save = function (model) {
+        if (model.idpetugas == undefined)
+            AdminPetugasServices.post(model).then(function (response) { });
+        else
+            AdminPetugasServices.put(model).then(function (response) { });
+    }
+
+    $scope.EditItem = function (item) {
+        $scope.model = item;
+    }
+
+    $scope.DeleteItem = function (model) {
+        AdminPetugasServices.delete(model).then(function (response) {
+
+        });
+    }
 }
 
 
@@ -42,6 +63,28 @@ function PemasanganController($scope, AdminPemasanganServices) {
 }
 
 
-function UsersController() {
-
+function LogoutController($http, $state, $location) {
+    $http({
+        method: 'post',
+        url: '/account/logoff',
+    }).then(function (response) {
+        
+    }, function (response) {
+        alert("Error");
+    });
+    $location("/home");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

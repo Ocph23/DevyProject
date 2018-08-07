@@ -36,12 +36,13 @@
 
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in Pengaduans">
+                            <tr ng-repeat="item in Pengaduans" ng-click="SelectedItem(item)" ng-href="#modal-container-42722" role="button" data-toggle="modal">
                                 <td>
                                     {{$index+1}}
                                 </td>
                                 <td>
-                                    {{item.IdPelanggan}}
+                                    {{("0000000"+item.IdPelanggan).slice(-7)}}
+
                                 </td>
                                 <td>
                                     {{item.Pengaduan}}
@@ -66,4 +67,79 @@
         </div>
     </div>
 </div>
+
+
+<div class="container-fluid">
+    <style>
+        .label-title {
+            width: 100px;
+            vertical-align: top;
+        }
+    </style>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <a id="modal-42722">Launch demo modal</a>
+            <div class="modal fade" id="modal-container-42722" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">
+                                <i class="fa fa-user"> Detail Pelanggan</i>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label class="label-title">Nama</label>
+                                        <input readonly ng-model="Item.Pelanggan.Nama" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-title">Jenis Kelamin</label>
+                                        <input readonly ng-model="Item.Pelanggan.JK" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-title">Alamat</label>
+                                        <textarea readonly ng-model="Item.Pelanggan.Alamat"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-title">Nomor Kontak</label>
+                                        <input readonly ng-model="Item.Pelanggan.NoIdentitas" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-title">Email</label>
+                                        <input readonly ng-model="Item.Pelanggan.Email" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <img style="width:100px" src="../../../assets/img/blue-user-icon-32.jpg" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Print
+                            </button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+    </div>
+</div>

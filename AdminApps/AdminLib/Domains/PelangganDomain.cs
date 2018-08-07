@@ -37,7 +37,7 @@ namespace AdminLib.Domains
 
         public async Task<PelangganModel> SaveChange(PelangganModel item)
         {
-            var data = item.ConvertModel();
+            var data = OcphMapper.Mapper.Map<Pelanggan>(item);
             var result = await data.SaveChange();
             return result.ConvertModel();
         }

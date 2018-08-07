@@ -1,14 +1,9 @@
-﻿using AdminLib;
-using AdminLib.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SharedApp.Models
 {
-    public class PemasanganModel : BaseNotify, IConvertModel<Pemasangan>
+    public class PemasanganModel : BaseNotify
     {
 
         public int idpemasangan
@@ -121,7 +116,7 @@ namespace SharedApp.Models
             set { SetProperty(ref _jenisPemangsangan, value); }
         }
 
-        public Petugas Petugas
+        public PetugasModel Petugas
         {
             get { return _petugas; }
             set {SetProperty(ref  _petugas , value); }
@@ -140,14 +135,14 @@ namespace SharedApp.Models
 
 
 
-        public Pelanggan Pelanggan
+        public PelangganModel Pelanggan
         {
             get { return _pelanggan; }
             set { _pelanggan = value; }
         }
 
-        private Petugas _petugas;
-        private Pelanggan _pelanggan;
+        private PetugasModel _petugas;
+        private PelangganModel _pelanggan;
         private int _idpemasangan;
         private string _peruntukan;
         private int _daya;
@@ -161,9 +156,6 @@ namespace SharedApp.Models
         private JenisPemasangan _jenisPemangsangan;
         private int? _idpetugas;
 
-        public Pemasangan ConvertModel()
-        {
-            return OcphMapper.Mapper.Map<Pemasangan>(this);
-        }
+       
     }
 }

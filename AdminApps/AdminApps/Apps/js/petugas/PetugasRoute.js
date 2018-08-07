@@ -8,6 +8,15 @@
                 templateUrl: '/apps/templates/base.html',
                 controller: 'UserController'
             })
+
+            .state('petugas-profile', {
+                url: '/profile',
+                parent: 'petugas',
+                templateUrl: '/apps/templates/petugas/profile.html',
+                controller: 'PetugasProfileController'
+            })
+
+
             .state('petugas-dashboard', {
                 url: '/dashboard',
                 parent: 'petugas',

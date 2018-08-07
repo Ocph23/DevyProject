@@ -1,14 +1,9 @@
-﻿using AdminLib;
-using AdminLib.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SharedApp.Models
 {
-   public class PetugasModel:BaseNotify,IConvertModel<Petugas>
+    public class PetugasModel:BaseNotify
     {
         public int idpetugas
         {
@@ -89,9 +84,6 @@ namespace SharedApp.Models
         private string _email;
         private string _userid;
 
-        public Petugas ConvertModel()
-        {
-            return OcphMapper.Mapper.Map<Petugas>(this);
-        }
+       
     }
 }

@@ -253,8 +253,13 @@
     <Content Include="Apps\templates\petugas\dashboard.html" />
     <Content Include="Apps\templates\petugas\leftnav.html" />
     <Content Include="Apps\templates\petugas\pemasangan.html" />
+    <Content Include="Apps\templates\petugas\pemasangan.min.html">
+      <DependentUpon>pemasangan.html</DependentUpon>
+    </Content>
     <Content Include="Apps\templates\petugas\pengaduan.html" />
     <Content Include="Apps\templates\petugas\perubahan.html" />
+    <Content Include="Apps\templates\petugas\profile.html" />
+    <Content Include="Apps\templates\petugas\topnav.html" />
     <Content Include="assets\css\material-dashboard.css" />
     <Content Include="assets\css\material-dashboard.min.css" />
     <Content Include="assets\demo\demo.css" />
@@ -1894,6 +1899,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />

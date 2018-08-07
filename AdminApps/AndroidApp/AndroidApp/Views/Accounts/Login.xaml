@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidApp.Views.Accounts.Login">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="70*"/>
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                </ContentView>
+              
+            </StackLayout>
+            <StackLayout Margin="40"   Grid.Row="1">
+                <Label  Text="LOGIN" HorizontalOptions="Center" FontSize="20"/>
+                <StackLayout Orientation="Horizontal">
+                    <AbsoluteLayout VerticalOptions="Center">
+                        <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" />
+                    </AbsoluteLayout>
+                    <Entry  x:Name="entryEmail"  
+                    HeightRequest="50" Placeholder="Email"
+                    HorizontalOptions="FillAndExpand"          
+                    Text="{Binding Password}">
+                    </Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <AbsoluteLayout VerticalOptions="Center">
+                        <Image Source="user.svg" VerticalOptions="Center" WidthRequest="20" HeightRequest="20" />
+                    </AbsoluteLayout>
+                    <Entry 
+                    x:Name="entryPassword"  
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"          
+                    Text="{Binding Password}"
+                    Placeholder="Password">
+                    </Entry>
+
+                </StackLayout>
+                
+                
+                <Button Text="Login" Command="{Binding LoginCommand}"/>
+                <StackLayout Orientation="Vertical" HorizontalOptions="End">
+                    <Label Text="Not Have Account ?"/>
+                    <Label Text="Register Here">
+                        <Label.GestureRecognizers>
+                            <ClickGestureRecognizer Command="{Binding RegisterCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
