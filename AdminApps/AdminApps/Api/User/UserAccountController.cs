@@ -31,14 +31,12 @@ namespace AdminApps.Api.User
                 var register = await RegisterPelanggan(model.Email, model.Password);
                 PelangganModel pel = (PelangganModel)model;
                 pel.IdUser = register.Item1.Id;
-
                 PelangganDomain dom = new PelangganDomain();
                 var result =await dom.SaveChange(pel);
-                return Ok(register);
+                return Ok(register.Item2);
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }
@@ -95,6 +93,15 @@ namespace AdminApps.Api.User
             }
         }
 
+
+        [HttpGet]
+
+        [Route("api/User/Profile")]
+        public async Task<IHttpActionResult> GetProfile()
+        {
+             var result = await User.PelangganProfile();
+            return Ok(result);
+        }
 
 
         [HttpGet]

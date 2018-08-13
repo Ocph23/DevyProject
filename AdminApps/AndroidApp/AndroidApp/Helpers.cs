@@ -1,19 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Newtonsoft.Json;
+using AndroidApp.Views;
 
 namespace AndroidApp
 {
     public class Helpers
     {
-        private static string _server = "http://192.16.137.1/";
+        private static string _server = "http://192.168.1.6/";
 
         public static async Task<AuthenticationToken> GetToken()
         {
             var app = ((App)Application.Current);
             return await Task.FromResult(await app.GetToken());
+        }
+
+        public static StringContent Content(object str)
+        {
+            var value = JsonConvert.SerializeObject(str);
+            return new StringContent(value, Encoding.UTF8, "application/json");
         }
 
 
@@ -23,10 +32,10 @@ namespace AndroidApp
             return Task.FromResult(app);
         }
 
-        public static async Task<Page> GetMainPageAsync()
+        public static async Task<MainPage> GetMainPageAsync()
         {
             var x = await Task.FromResult(Xamarin.Forms.Application.Current.MainPage);
-            return x as Page;
+            return x as MainPage;
         }
 
         public static AuthenticationToken Token { get; set; }
@@ -42,16 +51,31 @@ namespace AndroidApp
             }
         }
 
+        public static string KodeRegister { get; internal set; }
+
         internal static void ShowMessageError(string v)
         {
             MessagingCenter.Send(new MessagingCenterAlert
             {
-                Title = "Error",
+                Title = "ERROR",
                 Message = v,
                 Cancel = "OK"
             }, "message");
 
         }
+
+        internal static void ShowMessage(string v)
+        {
+            MessagingCenter.Send(new MessagingCenterAlert
+            {
+                Title = "INFO",
+                Message = v,
+                Cancel = "OK"
+            }, "message");
+
+        }
+
+
     }
 
     public class AuthenticationToken

@@ -7,7 +7,7 @@ namespace SharedApp.Models
    public class RegisterModel:PelangganModel
     {
        
-
+      
         public string Password { get; set; }
 
       

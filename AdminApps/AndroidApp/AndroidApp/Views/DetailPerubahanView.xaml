@@ -19,74 +19,37 @@
 
             </StackLayout>
 
-            <ScrollView Grid.Row="2" Margin="2">
-                <StackLayout Margin="5">
-                    <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
-                        <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Perubahan 1"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Jenis Ubah"/>
-                            <Label TextColor="#0C9185" Text="Daya"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="150" TextColor="#0C9185" Text="Keterangan"/>
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="Ini adalah  Keterangan  perubahan Saya yang adalah Contoh "></Label>
+            <ListView Grid.Row="2" ItemsSource="{Binding Source}" IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}" HasUnevenRows="True" IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="250">
+                            <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Margin="5" Padding="10" HeightRequest="200" >
+                                <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="{Binding StatusUbah,StringFormat='Petubahan {0}'}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Jenis Ubah"/>
+                                    <Label TextColor="#0C9185" Text="{Binding JenisPemasangan}"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Keterangan"/>
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" 
+                                                       Text="{Binding Peruntukan}"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
+                                    <Label TextColor="#0C9185" Text="{Binding Petugas.Nama}"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
+                                    <Label TextColor="#0C9185" Text="{Binding Status}"></Label>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
-                            <Label TextColor="#0C9185" Text="Ajenk"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
-                            <Label TextColor="#0C9185" Text="Proccess"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
-                        <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Perubahan 1"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Jenis Ubah"/>
-                            <Label TextColor="#0C9185" Text="Daya"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="150" TextColor="#0C9185" Text="Keterangan"/>
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="Ini adalah  Keterangan  perubahan Saya yang adalah Contoh "></Label>
-                            </StackLayout>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
-                            <Label TextColor="#0C9185" Text="Ajenk"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
-                            <Label TextColor="#0C9185" Text="Proccess"></Label>
-                        </StackLayout>
-                    </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-                    <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
-                        <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Perubahan 1"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Jenis Ubah"/>
-                            <Label TextColor="#0C9185" Text="Daya"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="150" TextColor="#0C9185" Text="Keterangan"/>
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="Ini adalah  Keterangan  perubahan Saya yang adalah Contoh "></Label>
-                            </StackLayout>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
-                            <Label TextColor="#0C9185" Text="Ajenk"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
-                            <Label TextColor="#0C9185" Text="Proccess"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

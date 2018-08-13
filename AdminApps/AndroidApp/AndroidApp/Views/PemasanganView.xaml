@@ -5,14 +5,17 @@
     <ContentPage.Content>
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
+                <RowDefinition Height="150" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
+            <ActivityIndicator HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" Grid.RowSpan="4"/>
             <StackLayout  Grid.Row="0" BackgroundColor="#0C9185" >
                 <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <Image Source="Logo_PLN.png" WidthRequest="100" HeightRequest="100"/>
+                    <ContentView>
+                        <Image Source="Logo_PLN.png" WidthRequest="75" HeightRequest="75"/>
+                    </ContentView>
                     <Label Grid.Row="1" FontSize="Large" Margin="5" TextColor="White" HorizontalOptions="Center" Text="Pemasangan Listrik Baru"/>
 
                 </StackLayout>
@@ -23,11 +26,11 @@
             <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Input Detail Pemasangan Anda"/>
 
             <ScrollView  Grid.Row="2">
-                <StackLayout Margin="10" Spacing="8">
+                <StackLayout Margin="10" Spacing="3">
                     <Label TextColor="#0C9185" Text="Peruntukan" />
-                    <Editor BackgroundColor="WhiteSmoke" TextColor="#0C9185" HeightRequest="75"></Editor>
+                    <Editor Text="{Binding Model.Peruntukan}" BackgroundColor="WhiteSmoke" TextColor="#0C9185" HeightRequest="75"></Editor>
                     <Label TextColor="#0C9185" Text="Daya"/>
-                    <Picker TextColor="#0C9185" >
+                    <Picker TextColor="#0C9185" SelectedItem="{Binding Model.Daya}" >
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>1500 KWH</x:String>
@@ -36,7 +39,7 @@
                         </Picker.ItemsSource>
                     </Picker>
                     <Label TextColor="#0C9185" Text="Jenis Tarif"/>
-                    <Picker TextColor="#0C9185" >
+                    <Picker TextColor="#0C9185" SelectedItem="{Binding Model.JenisTarif}" >
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Pascabayar</x:String>
@@ -45,12 +48,12 @@
                         </Picker.ItemsSource>
                     </Picker>
                     <Label TextColor="#0C9185" Text="Uang Jaminan"/>
-                    <Entry HorizontalTextAlignment="End" ></Entry>
+                    <Entry HorizontalTextAlignment="End" Text="{Binding Model.UangJaminan}" ></Entry>
                 </StackLayout>
             </ScrollView>
             <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="End" Margin="5">
-                <Button Text="Reset"/>
-                <Button Text="Simpan"/>
+                <Button Text="Reset" Command="{Binding ResetCommand}"/>
+                <Button Text="Simpan" Command="{Binding SaveCommand}"/>
 
             </StackLayout>
         </Grid>

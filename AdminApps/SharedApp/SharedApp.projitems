@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BaseNotify.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DashboardModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PelangganModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PemasanganModel.cs" />

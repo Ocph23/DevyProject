@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AndroidApp.ViewModels;
+using SharedApp;
+using SharedApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Plugin.InputKit.Shared.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,27 +17,62 @@ namespace AndroidApp.Views
 		public PerubahanView ()
 		{
 			InitializeComponent ();
-            BindingContext = new PerubahanViewModel();
+            BindingContext = new PerubahanViewModel(Navigation);
 		}
 	}
 
-    public class PerubahanViewModel:BaseNotify
+    public class PerubahanViewModel:BaseViewModel
     {
-        private string _selected;
-
-        public PerubahanViewModel()
+        private PemasanganModel _model;
+        public List<JenisPemasangan> Items { get; set; }
+        public PemasanganModel Model
         {
-            SourceItems = new List<string>();
+            get { return _model; }
+            set { SetProperty(ref _model, value); }
         }
 
-        public List<string> SourceItems { get; }
+        public PerubahanViewModel(INavigation nav)
+        {
+            Model = new PemasanganModel();
+            Items = new List<JenisPemasangan>();
+            Items.Add(JenisPemasangan.UbahDaya);
+            Items.Add(JenisPemasangan.UbahTarif);
+            NavigationEventArgs = nav;
+            ResetCommand = new Command(ResetAction);
+            SaveCommand = new Command(SaveAction);
+        }
 
-        public string SelectedItem {
-            get { return _selected; }
-            set
+        private async void SaveAction(object obj)
+        {
+            try
             {
-                SetProperty(ref _selected, value);
+                if (IsBusy)
+                    return;
+                IsBusy = true;
+                var saved = await PerubahanService.AddItemAsync(Model);
+                if (saved)
+                {
+                    Helpers.ShowMessage("Permohonan Perubahan Berhasil Dikirim");
+                    ResetCommand.Execute(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Helpers.ShowMessageError(ex.Message);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
+
+        private void ResetAction(object obj)
+        {
+            Model = new PemasanganModel();
+        }
+
+        public INavigation NavigationEventArgs { get; }
+        public Command ResetCommand { get; }
+        public Command SaveCommand { get; }
     }
 }

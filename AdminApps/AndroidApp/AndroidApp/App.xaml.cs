@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using AndroidApp.Views;
 using Xamarin.Forms.Xaml;
 using System.Threading.Tasks;
-using Plugin.InputKit.Shared.Controls;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace AndroidApp
@@ -20,7 +19,7 @@ namespace AndroidApp
                 await Current.MainPage.DisplayAlert(message.Title, message.Message, message.Cancel);
 
             });
-
+           
             SetMainPage();
 		}
 
@@ -45,16 +44,16 @@ namespace AndroidApp
         }
 
 
-        public static void SetMainPage()
+        private  void SetMainPage()
         {
             var login = new Views.Accounts.Login();
-            Current.MainPage = new NavigationPage(login);
+            Current.MainPage = login;
         }
 
 
         public void ChangeScreen(Page page)
         {
-            Current.MainPage = new NavigationPage(page);
+            Current.MainPage = page;
         }
 
 

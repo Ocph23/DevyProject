@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{1CDE76
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidApp.Android", "AndroidApp\AndroidApp.Android\AndroidApp.Android.csproj", "{A7C6E507-57FF-409C-A13C-D2587BD7E19D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroidApp", "AndroidApp\AndroidApp\AndroidApp.csproj", "{26A565C8-378E-46E1-8EF7-C9D885AA8CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroidApp", "AndroidApp\AndroidApp\AndroidApp.csproj", "{40248E60-64C6-4734-B87E-2AF4F5E5A3BB}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -46,16 +46,17 @@ Global
 		{A7C6E507-57FF-409C-A13C-D2587BD7E19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7C6E507-57FF-409C-A13C-D2587BD7E19D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7C6E507-57FF-409C-A13C-D2587BD7E19D}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{26A565C8-378E-46E1-8EF7-C9D885AA8CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26A565C8-378E-46E1-8EF7-C9D885AA8CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26A565C8-378E-46E1-8EF7-C9D885AA8CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26A565C8-378E-46E1-8EF7-C9D885AA8CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40248E60-64C6-4734-B87E-2AF4F5E5A3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40248E60-64C6-4734-B87E-2AF4F5E5A3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40248E60-64C6-4734-B87E-2AF4F5E5A3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40248E60-64C6-4734-B87E-2AF4F5E5A3BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A7C6E507-57FF-409C-A13C-D2587BD7E19D} = {1CDE7626-8FFE-44A0-A8A4-3940EBB69A40}
+		{40248E60-64C6-4734-B87E-2AF4F5E5A3BB} = {1CDE7626-8FFE-44A0-A8A4-3940EBB69A40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0D44F09-2D6D-4519-A23B-44C4C43EB8B7}

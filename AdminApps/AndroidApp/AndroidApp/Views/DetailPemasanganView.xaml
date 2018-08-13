@@ -2,11 +2,61 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AndroidApp.Views.DetailPemasanganView">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackLayout  Grid.Row="0" BackgroundColor="#0C9185" >
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Image Source="Logo_PLN.png" WidthRequest="100" HeightRequest="100"/>
+                    <Label Grid.Row="1" FontSize="Large" Margin="5" TextColor="White" HorizontalOptions="Center" Text="Detail  Pemasangan anda"/>
+                </StackLayout>
+            </StackLayout>
+            <ScrollView Grid.Row="2" Margin="2">
+                <StackLayout Spacing="15" Padding="10" VerticalOptions="StartAndExpand" >
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="150" TextColor="#0C9185" Text="Peruntukan"/>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="{Binding Model.Peruntukan}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="100" TextColor="#0C9185" Text="Daya"/>
+                        <Label TextColor="#0C9185" Text="{Binding Model.Daya,StringFormat='{} KWH'}"></Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="100" TextColor="#0C9185" Text="Nomor Gardu"/>
+                        <Label TextColor="#0C9185" Text="{Binding Model.NoGardu}"></Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="100" TextColor="#0C9185" Text="Jenis Tarif"/>
+                        <Label TextColor="#0C9185" Text="{Binding Model.JenisTarif}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="100" TextColor="#0C9185" Text="Uang Jaminan"/>
+                        <Label TextColor="#0C9185" Text="{Binding Model.UangJaminan,StringFormat='Rp. {0}'}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="100" TextColor="#0C9185" Text="Biaya"/>
+                        <Label TextColor="#0C9185" Text="{Binding Model.Biaya,StringFormat='Rp. {0}'}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
+                        <Label TextColor="#0C9185" Text="{Binding Model.Status}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
+                        <Label TextColor="#0C9185" Text="{Binding Model.Petugas}"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -1,40 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:control="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="AndroidApp.Views.ProfileView">
     <ContentPage.Content>
         <Grid BackgroundColor="Transparent">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*" />
-                <RowDefinition Height="50*" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <StackLayout  Grid.Row="0" BackgroundColor="#0C9185">
-                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <controls:CircleImage  BackgroundColor="White" BorderColor="Yellow" 
-                                      BorderThickness="1" Source="awesomeuser.png" 
-                                      Aspect="AspectFill">
-                        <controls:CircleImage.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="Android, iOS">100</On>
-                                <On Platform="WinPhone">75</On>
-                            </OnPlatform>
-                        </controls:CircleImage.WidthRequest>
-                        <controls:CircleImage.HeightRequest>
-                            <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="Android, iOS">100</On>
-                                <On Platform="WinPhone">75</On>
-                            </OnPlatform>
-                        </controls:CircleImage.HeightRequest>
-                        <controls:CircleImage.GestureRecognizers>
-                            <ClickGestureRecognizer x:Name="profileGesture" Clicked="profileGesture_Clicked"></ClickGestureRecognizer>
-                        </controls:CircleImage.GestureRecognizers>
-                    </controls:CircleImage>
-
-                </StackLayout>
-            </StackLayout>
-            
+            <control:CircleImage Source="{Binding User.Photo}" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" BorderColor="White" BorderThickness="3">
+                <control:CircleImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="profileGesture_Clicked"/>
+                </control:CircleImage.GestureRecognizers>
+            </control:CircleImage>
 
             <StackLayout Margin="20" Grid.Row="1" Spacing="15">
                 <Grid>
@@ -43,27 +23,46 @@
                         <ColumnDefinition Width="65*"/>
                     </Grid.ColumnDefinitions>
                     <StackLayout>
-                        <Label  Text="ID Pelanggan" TextColor="#0C9185"/>
-                        <Label  Text="Nama" TextColor="#0C9185"/>
-                        <Label  Text="Jenis Kelamin" TextColor="#0C9185"/>
-                        <Label  Text="Alamat" TextColor="#0C9185"/>
-                        <Label  Text="No Kontak" TextColor="#0C9185"/>
-                        <Label  Text="Email" TextColor="#0C9185"/>
-                        <Label  Text="Identitas" TextColor="#0C9185"/>
+                   
+                      
+                       
+                       
+                      
                     </StackLayout>
                     <StackLayout Grid.Column="1">
-                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
-                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
-                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
-                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
-                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
-                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
-                        <Label Text="ID Pelanggan" TextColor="#0C9185"/>
+                        <StackLayout>
+                            <Label Text="ID PELANGGAN" TextColor="#0C9185" WidthRequest="100"/>
+                            <Entry  Text="{Binding User.Pelanggan.IdPelanggan,StringFormat='{0:D6}'}" HorizontalOptions="StartAndExpand" TextColor="#0C9185"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Nama" TextColor="#0C9185"/>
+                            <Entry  Text="{Binding User.Pelanggan.Nama}" TextColor="#0C9185"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Jenis Kelamin" TextColor="#0C9185"/>
+                            <Entry  Text="{Binding User.Pelanggan.JK}" TextColor="#0C9185"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Alamat" TextColor="#0C9185"/>
+                            <Entry  Text="{Binding User.Pelanggan.Alamat}" TextColor="#0C9185"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="NoIdentitas" TextColor="#0C9185"/>
+                            <Entry  Text="{Binding User.Pelanggan.NoIdentitas}" TextColor="#0C9185"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Email" TextColor="#0C9185"/>
+                            <Entry  Text="{Binding User.Pelanggan.Email}" TextColor="#0C9185"/>
+                        </StackLayout>
+                    
+                       
                     </StackLayout>
+                  
                 </Grid>
             </StackLayout>
             <StackLayout Grid.Row="2" HorizontalOptions="CenterAndExpand">
-                <Label Text="@2018" TextColor="White"/>
+                <Button Text="Simpan" Clicked="Button_Clicked" HeightRequest="50" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

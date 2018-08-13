@@ -5,14 +5,17 @@
     <ContentPage.Content>
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
+                <RowDefinition Height="130" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
+            <ActivityIndicator HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" Grid.RowSpan="4"/>
             <StackLayout  Grid.Row="0" BackgroundColor="#0C9185" >
                 <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <Image Source="Logo_PLN.png" WidthRequest="100" HeightRequest="100"/>
+                    <ContentView>
+                        <Image Source="Logo_PLN.png" WidthRequest="75" HeightRequest="75"/>
+                    </ContentView>
                     <Label Grid.Row="1" FontSize="Large" Margin="5" TextColor="White" HorizontalOptions="Center" Text="Perubahan Layanan"/>
 
                 </StackLayout>
@@ -24,20 +27,15 @@
 
             <StackLayout Grid.Row="2" Margin="10" Spacing="15">
                 <Label TextColor="#0C9185" Text="Jenis Perubahan"/>
-                <Picker TextColor="#0C9185" >
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Daya</x:String>
-                            <x:String>Tarid</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
+                <Picker TextColor="#0C9185" ItemsSource="{Binding Items}" SelectedItem="{Binding Model.JenisPemasangan}" >
+                   
                 </Picker>
                 <Label TextColor="#0C9185" Text="Keterangan" />
-                <Editor BackgroundColor="WhiteSmoke" TextColor="#0C9185" HeightRequest="150"></Editor>
+                <Editor Text="{Binding Model.Peruntukan}" BackgroundColor="WhiteSmoke" TextColor="#0C9185" HeightRequest="150"></Editor>
             </StackLayout>
             <StackLayout Orientation="Horizontal" Grid.Row="3" HorizontalOptions="End" Margin="5">
-                <Button Text="Reset"/>
-                <Button Text="Simpan"/>
+                <Button Text="Reset" Command="{Binding ResetCommand}"/>
+                <Button Text="Simpan" Command="{Binding SaveCommand}"/>
 
             </StackLayout>
         </Grid>
