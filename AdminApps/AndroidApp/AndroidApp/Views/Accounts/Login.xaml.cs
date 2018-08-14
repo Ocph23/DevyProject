@@ -64,8 +64,8 @@ namespace AndroidApp.Views.Accounts
         public LoginViewModel(INavigation navigation)
         {
             this.nav = navigation;
-            Email = "aldrich@gmail.com";
-            Password = "Sony@77";
+          //  Email = "aldrich@gmail.com";
+          //  Password = "Sony@77";
             LoginCommand= new Command(LoginAction);
             RegisterCommand = new Command(RegisterAction);
             ForgotCommand = new Command(ForgotAction);

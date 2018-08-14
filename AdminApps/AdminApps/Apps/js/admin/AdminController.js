@@ -31,10 +31,14 @@ function PetugasController($scope, AdminPetugasServices) {
     $scope.Petugas = AdminPetugasServices.Petugas;
 
     $scope.Save = function (model) {
-        if (model.idpetugas == undefined)
+        if (model.idpetugas == undefined) {
             AdminPetugasServices.post(model).then(function (response) { });
-        else
+        }
+
+        else {
             AdminPetugasServices.put(model).then(function (response) { });
+        }
+           
     }
 
     $scope.EditItem = function (item) {

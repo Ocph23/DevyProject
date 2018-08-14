@@ -50,7 +50,7 @@ namespace AndroidApp.Services
             using (var res = new RestService())
             {
                 var str = JsonConvert.SerializeObject(model);
-                var requset = await res.PostAsJsonAsync("api/user/register",model);
+                var requset = await res.PostAsync("api/user/register",Helpers.Content(model));
                 var result = await requset.Content.ReadAsStringAsync();
                 if (requset.IsSuccessStatusCode)
                 {

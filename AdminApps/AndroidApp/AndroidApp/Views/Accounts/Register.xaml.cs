@@ -40,10 +40,10 @@ namespace AndroidApp.Views.Accounts
             this.nav = nav;
             RegisterCommand = new Command(RegisterAction);
             Model = new RegisterModel();
-            Model.Nama = "Aldrich";
-            Model.Email = "aldrich@gmail.com";
-            Model.Password = "Sony@77";
-            Model.ConfirmPassword= "Sony@77";
+            //Model.Nama = "Aldrich";
+            //Model.Email = "aldrich@gmail.com";
+            //Model.Password = "Sony@77";
+            //Model.ConfirmPassword= "Sony@77";
         }
 
         private async void RegisterAction(object obj)
@@ -58,7 +58,7 @@ namespace AndroidApp.Views.Accounts
                     var register = await AccountServices.Register(Model);
                     if (register)
                     {
-                        Helpers.ShowMessageError("Sukses");
+                        Helpers.ShowMessage("Sukses");
                     }
                 }
                 else

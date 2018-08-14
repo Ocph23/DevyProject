@@ -335,7 +335,7 @@ function AdminPerubahanServices($http, $q, MessageServices) {
 
 
 function AdminPetugasServices($http,$q,MessageServices) {
-    var def = $q.defer();
+ 
     var service = {
         instance: false,
         Petugas: [],
@@ -353,8 +353,6 @@ function AdminPetugasServices($http,$q,MessageServices) {
                 })
               
                 service.instance = true;
-                def.resolve(response.data);
-
             }, function (response) {
                 if (response.status = 401)
                     MessageServices.error("Anda Tidak memiliki Hak Akses");
@@ -362,13 +360,11 @@ function AdminPetugasServices($http,$q,MessageServices) {
                     MessageServices.error(response.data.Message);
                 def.reject();
             });
-        } else
-            def.resolve(this.Petugas);
-
-        return def.promise;
+        } 
     }
 
     function post(model) {
+        var def = $q.defer();
         $http({
             method: 'post',
             url: '/Api/AdminPetugas',data:model
@@ -391,6 +387,7 @@ function AdminPetugasServices($http,$q,MessageServices) {
     }
 
     function put(model) {
+        var def = $q.defer();
         $http({
             method: 'put', 
             headers: {
@@ -402,7 +399,6 @@ function AdminPetugasServices($http,$q,MessageServices) {
             url: '/Api/AdminPetugas?Id=' + model.idpetugas,
             data: model
         }).then(function (response) {
-            service.Petugas.push(response.data);
             alert("Data Tersimpan");
             service.instance = true;
             def.resolve(response.data);
@@ -421,6 +417,7 @@ function AdminPetugasServices($http,$q,MessageServices) {
     }
 
     function deleteItem(model) {
+        var def = $q.defer();
         $http({
             method: 'delete',
             url: '/Api/AdminPetugas?Id=' + model.idpetugas

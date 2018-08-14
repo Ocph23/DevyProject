@@ -98,7 +98,7 @@ namespace AndroidApp.Services
                     }
                 }
             }
-            return list;
+            return list.Where(O => O.JenisPemasangan != JenisPemasangan.Baru);
         }
 
         public async Task<bool> UpdateItemAsync(PemasanganModel item)
