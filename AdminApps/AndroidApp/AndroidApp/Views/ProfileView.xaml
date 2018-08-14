@@ -10,56 +10,34 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <control:CircleImage Source="{Binding User.Photo}" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" BorderColor="White" BorderThickness="3">
+            <control:CircleImage Source="{Binding User.Photo}" HorizontalOptions="Center" WidthRequest="75" HeightRequest="75" Aspect="AspectFill" BorderColor="White" BorderThickness="3">
                 <control:CircleImage.GestureRecognizers>
                     <TapGestureRecognizer Tapped="profileGesture_Clicked"/>
                 </control:CircleImage.GestureRecognizers>
             </control:CircleImage>
 
-            <StackLayout Margin="20" Grid.Row="1" Spacing="15">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="65*"/>
-                    </Grid.ColumnDefinitions>
+            <StackLayout Margin="20" Grid.Row="1" Spacing="10">
+                <StackLayout>
                     <StackLayout>
-                   
-                      
-                       
-                       
-                      
+                        <Entry  Placeholder="ID PELANGGAN" Text="{Binding User.Pelanggan.IdPelanggan,StringFormat='PL{0:D6}'}" HorizontalOptions="StartAndExpand" TextColor="#0C9185"/>
                     </StackLayout>
-                    <StackLayout Grid.Column="1">
-                        <StackLayout>
-                            <Label Text="ID PELANGGAN" TextColor="#0C9185" WidthRequest="100"/>
-                            <Entry  Text="{Binding User.Pelanggan.IdPelanggan,StringFormat='{0:D6}'}" HorizontalOptions="StartAndExpand" TextColor="#0C9185"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="Nama" TextColor="#0C9185"/>
-                            <Entry  Text="{Binding User.Pelanggan.Nama}" TextColor="#0C9185"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="Jenis Kelamin" TextColor="#0C9185"/>
-                            <Entry  Text="{Binding User.Pelanggan.JK}" TextColor="#0C9185"/>
-                        </StackLayout>
+                    <StackLayout>
+                        <Entry Placeholder="NAMA PELANGGAN" Text="{Binding User.Pelanggan.Nama}" TextColor="#0C9185"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Entry Placeholder="GENDER" Text="{Binding User.Pelanggan.JK}" TextColor="#0C9185"/>
+                    </StackLayout>
 
-                        <StackLayout>
-                            <Label Text="Alamat" TextColor="#0C9185"/>
-                            <Entry  Text="{Binding User.Pelanggan.Alamat}" TextColor="#0C9185"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="NoIdentitas" TextColor="#0C9185"/>
-                            <Entry  Text="{Binding User.Pelanggan.NoIdentitas}" TextColor="#0C9185"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="Email" TextColor="#0C9185"/>
-                            <Entry  Text="{Binding User.Pelanggan.Email}" TextColor="#0C9185"/>
-                        </StackLayout>
-                    
-                       
+                    <StackLayout>
+                        <Entry Placeholder="ALAMAT" Text="{Binding User.Pelanggan.Alamat}" TextColor="#0C9185"/>
                     </StackLayout>
-                  
-                </Grid>
+                    <StackLayout>
+                        <Entry  Placeholder="NO IDENTITAS" Text="{Binding User.Pelanggan.NoIdentitas}" TextColor="#0C9185"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Entry Placeholder="EMAIL" IsEnabled="False" Text="{Binding User.Pelanggan.Email}" TextColor="#0C9185"/>
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="2" HorizontalOptions="CenterAndExpand">
                 <Button Text="Simpan" Clicked="Button_Clicked" HeightRequest="50" />

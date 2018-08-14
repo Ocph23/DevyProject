@@ -83,11 +83,21 @@ namespace AdminLib.Models
             {
                 try
                 {
-                    IdPelanggan = db.Pelanggan.InsertAndGetLastID(this);
-                    if (IdPelanggan <= 0)
-                        throw new SystemException("Data Tidak Tersimpan");
-                    return Task.FromResult(this as Pelanggan);
+                    if(IdPelanggan<=0)
+                    {
+                        IdPelanggan = db.Pelanggan.InsertAndGetLastID(this);
+                        if (IdPelanggan <= 0)
+                            throw new SystemException("Data Tidak Tersimpan");
+                       
+                    }else
+                    {
+                        if (!db.Pelanggan.Update(O => new { O.Alamat,O.Foto,O.JK,O.Nama,O.NoIdentitas,O.NoKontak,O.ScanIdentitas,O.Verification },this,O=>O.IdPelanggan==IdPelanggan))
+                        {
+                            throw new SystemException("Data Tidak Tersimpan");
+                        }
+                    }
 
+                    return Task.FromResult(this as Pelanggan);
                 }
                 catch (Exception ex)
                 {

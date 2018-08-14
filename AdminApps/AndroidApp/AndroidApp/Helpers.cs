@@ -11,7 +11,7 @@ namespace AndroidApp
 {
     public class Helpers
     {
-        private static string _server = "http://192.168.1.6/";
+        private static string _server = "http://192.168.1.2/";
 
         public static async Task<AuthenticationToken> GetToken()
         {

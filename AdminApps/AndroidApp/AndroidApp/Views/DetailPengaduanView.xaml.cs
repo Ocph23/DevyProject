@@ -37,6 +37,7 @@ namespace AndroidApp.Views
 
         private async void RefreshAction(object obj)
         {
+            await Task.Delay(1000);
             try
             {
                 if (IsBusy)

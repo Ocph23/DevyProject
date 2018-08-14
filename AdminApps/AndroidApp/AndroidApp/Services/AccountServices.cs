@@ -70,6 +70,22 @@ namespace AndroidApp.Services
             }
         }
 
+        internal async Task<bool> SaveProfile(PelangganModel model)
+        {
+            using (var res = new RestService())
+            {
+                var str = JsonConvert.SerializeObject(model);
+                var result = await res.PutAsync("/api/User/Profile", Helpers.Content(model));
+                var token = await result.Content.ReadAsStringAsync();
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                    throw new SystemException("Gagal Tersimpan");
+            }
+        }
+
         internal async Task<bool> RequestNewPassword(string email)
         {
             using (var res = new RestService())

@@ -19,64 +19,48 @@
 
             </StackLayout>
 
-            <ScrollView Grid.Row="2" Margin="2">
-                <StackLayout Margin="5">
-                    <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
-                        <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Pengaduan !"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="150" TextColor="#0C9185" Text="Pengaduan"/>
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="Ini adalah  Keterangan  perubahan Saya yang adalah Contoh "></Label>
+
+            <ListView Grid.Row="2" ItemsSource="{Binding Source}" IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}" HasUnevenRows="True" IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="250">
+                            <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
+                                <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Pengaduan !"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="ID Pengaduan"/>
+                                    <Label TextColor="#0C9185" Text="{Binding IdPengaduan}"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="150" TextColor="#0C9185" Text="Pengaduan"/>
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" 
+                                               Text="{Binding Pengaduan}"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Lapor"/>
+                                    <Label TextColor="#0C9185" Text="{Binding WaktuLapor}"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Selesai"/>
+                                    <Label TextColor="#0C9185" Text="{Binding WaktuSelesai}"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
+                                    <Label TextColor="#0C9185" Text="{Binding Petugas.Nama}"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
+                                    <Label TextColor="#0C9185" Text="{Binding Status}"></Label>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Lapor"/>
-                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
-                        </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Selesai"/>
-                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
-                            <Label TextColor="#0C9185" Text="Ajenk"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
-                            <Label TextColor="#0C9185" Text="Proccess"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Padding="5" HeightRequest="200" >
-                        <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="Pengaduan !"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="150" TextColor="#0C9185" Text="Pengaduan"/>
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label HorizontalOptions="StartAndExpand" LineBreakMode="CharacterWrap" TextColor="#0C9185" Text="Ini adalah  Keterangan  perubahan Saya yang adalah Contoh "></Label>
-                            </StackLayout>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Lapor"/>
-                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Waktu Selesai"/>
-                            <Label TextColor="#0C9185" Text="23 Agus 2018  13:40"></Label>
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
-                            <Label TextColor="#0C9185" Text="Ajenk"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
-                            <Label TextColor="#0C9185" Text="Proccess"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

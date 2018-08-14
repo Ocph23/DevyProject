@@ -20,6 +20,7 @@ namespace AndroidApp.Views
 
         private void btn_Clicked(object sender, EventArgs e)
         {
+            Helpers.Server = path.Text;
             Navigation.PopModalAsync();
         }
     }

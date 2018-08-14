@@ -133,6 +133,7 @@ namespace AndroidApp.Views
         private void profileGesture_Clicked(object sender, EventArgs e)
         {
             Detail= new NavigationPage(new ProfileView(vm.User));
+            IsPresented = false;
         }
     }
 
@@ -183,8 +184,16 @@ namespace AndroidApp.Views
         private async void CompleteProfile(Task<PelangganModel> x)
         {
             var result = await x;
-            User = new Profile { UserName = result.Nama, PhotoSource = result.Foto };
-            User.Pelanggan = result;
+            if(result!=null)
+            {
+                User = new Profile { UserName = result.Nama, PhotoSource = result.Foto };
+                User.Pelanggan = result;
+                if(result.Foto!=null && result.Foto.Length>0)
+                {
+                    User.PhotoSource = result.Foto;
+                }
+            }
+           
         }
         
     }

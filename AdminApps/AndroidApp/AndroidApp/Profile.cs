@@ -2,6 +2,7 @@
 using SharedApp.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Xamarin.Forms;
 
@@ -19,7 +20,17 @@ namespace AndroidApp
             set
             {
                 SetProperty(ref _photoSoucer, value);
+                if(value!=null && value.Length>0)
+                {
+                    LoadPhoto(value);
+                }
             }
+        }
+
+        private  void LoadPhoto(byte[] value)
+        {
+            Photo = ImageSource.FromStream(() => new MemoryStream(value));
+
         }
 
         public string UserName

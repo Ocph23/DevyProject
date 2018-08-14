@@ -94,8 +94,25 @@ namespace AdminApps.Api.User
         }
 
 
-        [HttpGet]
 
+        [HttpPut]
+        [Route("api/User/Profile")]
+        public async Task<IHttpActionResult> UpdateProfile(PelangganModel model)
+        {
+            try
+            {
+                PelangganDomain dom = new PelangganDomain();
+                var result = await dom.SaveChange(model);
+                return Ok(result);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
         [Route("api/User/Profile")]
         public async Task<IHttpActionResult> GetProfile()
         {
