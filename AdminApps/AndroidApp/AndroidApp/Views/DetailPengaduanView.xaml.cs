@@ -18,7 +18,7 @@ namespace AndroidApp.Views
 		public DetailPengaduanView ()
 		{
 			InitializeComponent ();
-            BindingContext = new DetailPemasanganViewModel(Navigation);
+            BindingContext = new DetailPengaduanViewModel(Navigation);
 		}
 	}
 
@@ -31,6 +31,7 @@ namespace AndroidApp.Views
         public DetailPengaduanViewModel(INavigation nav)
         {
             navigation = nav;
+            Source = new ObservableCollection<PengaduanModel>();
             RefreshCommand = new Command(RefreshAction);
             RefreshCommand.Execute(null);
         }
@@ -47,6 +48,8 @@ namespace AndroidApp.Views
                 var result = await PengaduanService.GetItemsAsync();
                 foreach (var item in result)
                 {
+                    if (item.Petugas != null && !string.IsNullOrEmpty(item.Petugas.Nama))
+                        item.ShowPetugas = true;
                     Source.Add(item);
                 }
 

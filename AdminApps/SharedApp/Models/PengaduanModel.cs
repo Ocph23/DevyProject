@@ -78,6 +78,15 @@ namespace SharedApp.Models
             }
         }
 
+        private bool _ShowPetugas;
+
+        public bool ShowPetugas
+        {
+            get { return _ShowPetugas; }
+            set { SetProperty(ref _ShowPetugas, value); }
+        }
+
+
         public PelangganModel Pelanggan { get; set; }
         public PetugasModel Petugas { get; set; }
 

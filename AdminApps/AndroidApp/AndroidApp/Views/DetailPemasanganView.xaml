@@ -51,9 +51,15 @@
                         <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
                         <Label TextColor="#0C9185" Text="{Binding Model.Status}"></Label>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
-                        <Label TextColor="#0C9185" Text="{Binding Model.Petugas}"></Label>
+                    <StackLayout IsVisible="{Binding ShowPetugas}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
+                            <Label TextColor="#0C9185" Text="{Binding Model.Petugas.Nama}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label WidthRequest="100" TextColor="#0C9185" Text="Pengerjaan"/>
+                            <Label TextColor="#0C9185" Text="1 - 3 hari kedepan"></Label>
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

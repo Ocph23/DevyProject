@@ -143,13 +143,22 @@ namespace SharedApp.Models
         }
 
 
-
-
         public PelangganModel Pelanggan
         {
             get { return _pelanggan; }
             set { _pelanggan = value; }
         }
+
+
+        private bool _ShowPetugas;
+
+        public bool ShowPetugas
+        {
+            get { return _ShowPetugas; }
+            set {SetProperty(ref _ShowPetugas , value); }
+        }
+
+
 
         private PetugasModel _petugas;
         private PelangganModel _pelanggan;

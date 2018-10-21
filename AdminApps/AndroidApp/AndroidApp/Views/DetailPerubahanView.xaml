@@ -24,7 +24,7 @@
                     <DataTemplate>
                         <ViewCell Height="250">
                             <StackLayout Spacing="8" BackgroundColor="#DFF0D8" Opacity="0.5" Margin="5" Padding="10" HeightRequest="200" >
-                                <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="{Binding StatusUbah,StringFormat='Petubahan {0}'}"/>
+                                <Label Grid.Row="1" Margin="5" TextColor="#0C9185" HorizontalOptions="Start" FontSize="Medium" Text="{Binding StatusUbah,StringFormat='Perubahan {0}'}"/>
                                 <StackLayout Orientation="Horizontal">
                                     <Label WidthRequest="100" TextColor="#0C9185" Text="Jenis Ubah"/>
                                     <Label TextColor="#0C9185" Text="{Binding JenisPemasangan}"></Label>
@@ -37,13 +37,20 @@
                                     </StackLayout>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
-                                    <Label TextColor="#0C9185" Text="{Binding Petugas.Nama}"></Label>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
                                     <Label WidthRequest="100" TextColor="#0C9185" Text="Status"/>
                                     <Label TextColor="#0C9185" Text="{Binding Status}"></Label>
                                 </StackLayout>
+                                <StackLayout IsVisible="{Binding ShowPetugas}">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label WidthRequest="100" TextColor="#0C9185" Text="Petugas"/>
+                                        <Label TextColor="#0C9185" Text="{Binding Petugas.Nama}"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label WidthRequest="100" TextColor="#0C9185" Text="Pengerjaan"/>
+                                        <Label TextColor="#0C9185" Text="1 - 3 hari kedepan"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                               
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

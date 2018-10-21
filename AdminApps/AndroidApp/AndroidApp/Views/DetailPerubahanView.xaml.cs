@@ -51,6 +51,8 @@ namespace AndroidApp.Views
                 {
                     nomor++;
                     item.StatusUbah = nomor;
+                    if (item.Petugas != null && !string.IsNullOrEmpty(item.Petugas.Nama))
+                        item.ShowPetugas = true;
                     Source.Add(item);
                 }
 

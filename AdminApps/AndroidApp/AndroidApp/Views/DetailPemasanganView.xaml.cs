@@ -45,7 +45,11 @@ namespace AndroidApp.Views
                     return;
                 IsBusy = true;
                 var result = await PemasanganService.GetItemsAsync();
+
                 Model = result.FirstOrDefault();
+                if (Model!=null && Model.Petugas != null && !string.IsNullOrEmpty(Model.Petugas.Nama))
+                    Model.ShowPetugas = true;
+
             }
             catch (Exception ex)
             {
